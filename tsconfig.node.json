@@ -16,7 +16,11 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Enable JSON */
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite-configs", "scripts"]
 }
