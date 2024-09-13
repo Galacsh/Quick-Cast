@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 20 14.3% 4.1%;
+    --background: 0 0% 95%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
     --card-foreground: 20 14.3% 4.1%;
     --popover: 0 0% 100%;
@@ -20,7 +20,7 @@
     --accent-foreground: 24 9.8% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
-    --border: 20 5.9% 90%;
+    --border: 0 0% 75%;
     --input: 20 5.9% 90%;
     --ring: 20 14.3% 4.1%;
     --radius: 0.5rem;
@@ -29,11 +29,24 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* cmdk */
+    --cmdk-footer: 0 0% 0%;
+    --cmdk-kbd: 0 0% 35%;
+    --cmdk-kbd-accent: 0 0% 39%;
+    --cmdk-placeholder: 0 0% 58%;
+    --cmdk-section-title: 0 0% 39%;
+    --cmdk-background-accent: 0 0% 86%;
+    --cmdk-background-footer: 0 0% 93%;
+    --cmdk-background-footer-accent: 0 0% 88%;
+    --cmdk-background-separator: 0 0% 84%;
+    --cmdk-background-kbd: 0 0% 84%;
+    --cmdk-background-kbd-accent: 0 0% 79%;
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 60 9.1% 97.8%;
+    --background: 0 0% 10%;
+    --foreground: 0 0% 100%;
     --card: 20 14.3% 4.1%;
     --card-foreground: 60 9.1% 97.8%;
     --popover: 20 14.3% 4.1%;
@@ -48,7 +61,7 @@
     --accent-foreground: 60 9.1% 97.8%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 60 9.1% 97.8%;
-    --border: 12 6.5% 15.1%;
+    --border: 0 0% 44%;
     --input: 12 6.5% 15.1%;
     --ring: 24 5.7% 82.9%;
     --chart-1: 220 70% 50%;
@@ -56,6 +69,19 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* cmdk */
+    --cmdk-footer: 0 0% 100%;
+    --cmdk-kbd: 0 0% 66%;
+    --cmdk-kbd-accent: 0 0% 70%;
+    --cmdk-placeholder: 0 0% 40%;
+    --cmdk-section-title: 0 0% 61%;
+    --cmdk-background-accent: 0 0% 19%;
+    --cmdk-background-footer: 0 0% 18%;
+    --cmdk-background-footer-accent: 0 0% 24%;
+    --cmdk-background-separator: 0 0% 24%;
+    --cmdk-background-kbd: 0 0% 24%;
+    --cmdk-background-kbd-accent: 0 0% 30%;
   }
 }
 

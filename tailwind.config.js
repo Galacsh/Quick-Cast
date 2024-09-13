@@ -13,6 +13,12 @@ module.exports = {
       },
     },
     extend: {
+      width: {
+        cmdk: '750px',
+      },
+      height: {
+        cmdk: '476px',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -46,6 +52,25 @@ module.exports = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
+        },
+        // cmdk
+        cmdk: {
+          footer: 'hsl(var(--cmdk-footer))',
+          kbd: {
+            DEFAULT: 'hsl(var(--cmdk-kbd))',
+            accent: 'hsl(var(--cmdk-kbd-accent))',
+          },
+          placeholder: 'hsl(var(--cmdk-placeholder))',
+          'section-title': 'hsl(var(--cmdk-section-title))',
+          'background-accent': 'hsl(var(--cmdk-background-accent))',
+          'background-footer': 'hsl(var(--cmdk-background-footer))',
+          'background-footer-accent':
+            'hsl(var(--cmdk-background-footer-accent))',
+          'background-separator': 'hsl(var(--cmdk-background-separator))',
+          'background-kbd': {
+            DEFAULT: 'hsl(var(--cmdk-background-kbd))',
+            accent: 'hsl(var(--cmdk-background-kbd-accent))',
+          },
         },
       },
       borderRadius: {
