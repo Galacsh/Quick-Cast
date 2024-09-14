@@ -28,7 +28,10 @@ export default function Footer(props: {
       </div>
       {/* right side */}
       <div className="flex items-center gap-2 group/fbs">
-        <FooterButton title="First in action panel" shortcut={['↵']} />
+        <FooterButton
+          text="First in action panel"
+          shortcut={{ code: 'Enter' }}
+        />
         <div className="h-2.5 w-0.5 bg-cmdk-background-separator group-hover/fbs:invisible"></div>
         <FooterActionPanel
           heading="Selected Item"

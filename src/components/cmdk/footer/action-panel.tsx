@@ -18,18 +18,6 @@ export default function FooterActionPanel(props: {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    function listener(e: KeyboardEvent) {
-      if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
-        e.preventDefault()
-        setOpen((o) => !o)
-      }
-    }
-
-    document.addEventListener('keydown', listener)
-    return () => document.removeEventListener('keydown', listener)
-  }, [])
-
-  useEffect(() => {
     if (open) {
       if (props.onOpen != null) props.onOpen()
     } else {
@@ -41,10 +29,14 @@ export default function FooterActionPanel(props: {
     <Popover.Root open={open} onOpenChange={setOpen} modal>
       <Popover.Trigger
         aria-expanded={open}
-        onClick={() => setOpen(true)}
         disabled={props.disabled}
-        tabIndex={-1}>
-        <FooterButton title="Actions" shortcut={['⌘', 'K']} />
+        tabIndex={-1}
+        asChild>
+        <FooterButton
+          text="Actions"
+          shortcut={{ ctrlMetaKey: true, code: 'KeyK' }}
+          onTrigger={() => setOpen(true)}
+        />
       </Popover.Trigger>
       <Popover.Content
         side="top"
@@ -66,16 +58,22 @@ export default function FooterActionPanel(props: {
           )}>
           <Suggestions className="flex-1" emptyClassName="h-16">
             <SuggestionGroup heading="Selected">
-              <FooterActionPanelItem name="Open Application" shortcut={['⌘']} />
+              <FooterActionPanelItem
+                name="Open Application"
+                shortcut={{ ctrlMetaKey: true, code: 'Enter' }}
+              />
               <FooterActionPanelItem
                 name="Show in Finder"
-                shortcut={['⌘', '⌘']}
+                shortcut={{ code: 'Enter' }}
               />
               <FooterActionPanelItem
                 name="Show Info in Finder"
-                shortcut={['⌘']}
+                shortcut={{ code: 'Enter' }}
               />
-              <FooterActionPanelItem name="Add to Favorites" shortcut={['⌘']} />
+              <FooterActionPanelItem
+                name="Add to Favorites"
+                shortcut={{ code: 'Enter' }}
+              />
             </SuggestionGroup>
           </Suggestions>
           <SearchInput

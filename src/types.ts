@@ -9,3 +9,8 @@ export type ThemeProviderState = {
   theme: Theme
   setTheme: Dispatch<SetStateAction<Theme>>
 }
+
+export type Keystroke = Pick<KeyboardEvent, 'code'> &
+  Partial<Pick<KeyboardEvent, 'altKey' | 'shiftKey'>> & {
+    ctrlMetaKey?: boolean
+  }
