@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@/components/theme-provider'
-import RootSearch from '@/components/cmdk/root-search'
+import RootSearch from '@/popup/root-search'
 
 export default function App() {
   return (

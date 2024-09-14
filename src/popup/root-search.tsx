@@ -15,19 +15,16 @@ export default function RootSearch() {
   const suggestionsRef = useRef<HTMLDivElement>(null)
 
   function focusSearchInput() {
-    console.log(searchRef)
     searchRef?.current?.focus()
   }
 
   function disableSuggestionsScrolling() {
-    console.log(suggestionsRef)
     if (suggestionsRef.current) {
       suggestionsRef.current.style.overflow = 'hidden'
     }
   }
 
   function enableSuggestionsScrolling() {
-    console.log(suggestionsRef)
     if (suggestionsRef.current) {
       suggestionsRef.current.style.overflow = ''
     }
