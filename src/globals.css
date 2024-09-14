@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url(/Inter-Variable.ttf) format('truetype');
+}
+
 @layer base {
   :root {
     --background: 0 0% 95%;
@@ -91,6 +98,6 @@
   }
 
   body {
-    @apply bg-background text-foreground text-base;
+    @apply font-sans text-base text-foreground bg-background;
   }
 }
