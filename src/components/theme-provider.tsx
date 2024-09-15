@@ -1,20 +1,23 @@
-import { useEffect, createContext } from 'react'
+import {
+  createContext,
+  type ReactNode,
+  type Dispatch,
+  type SetStateAction,
+  useEffect,
+} from 'react'
 import { useStorageState } from '@/lib/hooks/use-storage-state'
-import type { Theme, ThemeProviderState, ThemeProviderProps } from '@/types'
+import type { Theme } from '@/types'
 
-const initialState: ThemeProviderState = {
-  theme: 'system',
-  setTheme: () => 'system',
+type ThemeProviderState = {
+  theme: Theme
+  setTheme: Dispatch<SetStateAction<Theme>>
 }
 
-function getSystemTheme() {
-  const query = '(prefers-color-scheme: dark)'
-  return window.matchMedia(query).matches ? 'dark' : 'light'
-}
+export const ThemeContext = createContext<ThemeProviderState>(
+  {} as ThemeProviderState
+)
 
-export const ThemeContext = createContext<ThemeProviderState>(initialState)
-
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+export function ThemeProvider(props: { children: ReactNode }) {
   const [theme, setTheme] = useStorageState<Theme>('theme', 'system')
 
   useEffect(() => {
@@ -30,11 +33,14 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
     }
   }, [theme])
 
-  const value = { theme, setTheme }
-
   return (
-    <ThemeContext.Provider {...props} value={value}>
-      {children}
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {props.children}
     </ThemeContext.Provider>
   )
+}
+
+function getSystemTheme() {
+  const query = '(prefers-color-scheme: dark)'
+  return window.matchMedia(query).matches ? 'dark' : 'light'
 }

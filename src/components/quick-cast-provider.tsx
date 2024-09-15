@@ -2,7 +2,6 @@ import {
   createContext,
   useState,
   useRef,
-  createRef,
   type ReactNode,
   type Dispatch,
   type SetStateAction,
@@ -19,16 +18,9 @@ type QuickCastProviderState = {
   bodyRef: RefObject<HTMLDivElement>
 }
 
-const initialState: QuickCastProviderState = {
-  view: <>No view found.</>,
-  setView: () => {},
-  views: { current: [] },
-  onViewPops: { current: [] },
-  bodyRef: createRef<HTMLDivElement>(),
-  searchRef: createRef<HTMLInputElement>(),
-}
-
-export const QuickCastContext = createContext(initialState)
+export const QuickCastContext = createContext<QuickCastProviderState>(
+  {} as QuickCastProviderState
+)
 
 export function QuickCastProvider(props: {
   home: ReactNode
@@ -37,6 +29,7 @@ export function QuickCastProvider(props: {
   const views = useRef<ReactNode[]>([props.home])
   const onViewPops = useRef<(() => void)[]>([() => {}])
   const [view, setView] = useState<ReactNode>(props.home)
+
   const bodyRef = useRef<HTMLInputElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
 
