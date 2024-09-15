@@ -38,6 +38,10 @@
     --chart-5: 27 87% 67%;
 
     /* cmdk */
+    --cmdk-width: 46.875rem;
+    --cmdk-height: 29.75rem;
+    --cmdk-height-footer: 2.5rem;
+    --cmdk-height-body: calc(var(--cmdk-height) - var(--cmdk-height-footer));
     --cmdk-footer: 0 0% 0%;
     --cmdk-kbd: 0 0% 35%;
     --cmdk-kbd-accent: 0 0% 39%;

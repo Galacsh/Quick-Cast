@@ -14,10 +14,16 @@ module.exports = {
     },
     extend: {
       width: {
-        cmdk: '750px',
+        cmdk: 'var(--cmdk-width)',
       },
       height: {
-        cmdk: '476px',
+        cmdk: 'var(--cmdk-height)',
+        'cmdk-body': 'var(--cmdk-height-body)',
+        'cmdk-footer': 'var(--cmdk-height-footer)',
+      },
+      maxHeight: {
+        'cmdk-body': 'var(--cmdk-height-body)',
+        'cmdk-footer': 'var(--cmdk-height-footer)',
       },
       colors: {
         border: 'hsl(var(--border))',
