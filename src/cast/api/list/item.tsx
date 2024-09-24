@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { CommandItem, useCommandState } from 'cmdk'
+import { v4 as uuid } from 'uuid'
 import { useActions, usePanel } from '@/cast/contexts'
 import { isKeystroke, toActions } from '@/cast/utils'
 import { cn } from '@/lib/utils'
 import type { ItemProps } from '@/cast/types'
 
 export default function Item({
-  id,
   icon: Icon,
   title,
   subtitle,
@@ -14,9 +14,10 @@ export default function Item({
   actions: ActionPanel,
   className,
 }: ItemProps) {
+  const id = useRef<string>(uuid())
   const { setContent, isPanelOpen } = usePanel()
   const { defaultAction, setActions } = useActions()
-  const isSelected = useCommandState(({ value }) => value === id)
+  const isSelected = useCommandState(({ value }) => value === id.current)
   const ref = useRef<HTMLDivElement>(null)
 
   // update action panel items and actions
@@ -58,7 +59,7 @@ export default function Item({
   return (
     <CommandItem
       ref={ref}
-      value={id}
+      value={id.current}
       keywords={[title]}
       className={cn(
         'h-10 px-2',

@@ -32,7 +32,6 @@ export type ActionPanelProps = {
 }
 
 export type ItemProps = {
-  id: string
   icon?: ComponentType<{ className?: string }>
   title: string
   subtitle?: string
@@ -78,14 +77,12 @@ type ItemElement = ReactElement<ItemProps>
 // =============================
 
 export type Extension = {
-  id: string
   name: string
   icon: ComponentType<{ className?: string }>
   commands: Command[]
 }
 
 export type Command = {
-  id: string
   icon: ComponentType<{ className?: string }>
   name: string
 } & (WithView | WithoutView)
