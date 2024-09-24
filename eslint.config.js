@@ -20,6 +20,7 @@ export default tseslint.config(
       parserOptions: {
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,
+        warnOnUnsupportedTypeScriptVersion: false,
       },
     },
     settings: { react: { version: '18.3' } },
