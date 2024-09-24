@@ -33,17 +33,21 @@ function List({
         onValueChange={setSearch}
         placeholder={searchBarPlaceholder}
         className={cn(
-          'w-full',
+          'w-full h-14',
           'bg-transparent text-foreground placeholder:text-cmdk-placeholder',
           'outline-none border-cmdk-background-separator',
           'p-4 border-b',
           className
         )}
       />
-      <CommandList className={cn('p-2', 'overflow-auto overscroll-contain')}>
+      <CommandList
+        className={cn(
+          'w-full max-h-[calc(100%-3.5rem)] p-2',
+          'overflow-auto overscroll-contain'
+        )}>
         <CommandEmpty
           className={cn(
-            'w-full h-80',
+            'w-full h-80 max-h-full',
             'flex items-center justify-center',
             'text-sm whitespace-pre-wrap',
             'text-cmdk-placeholder',

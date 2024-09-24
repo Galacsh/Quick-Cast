@@ -29,7 +29,10 @@ export default function Main() {
   return (
     <div
       ref={ref}
-      className={cn('w-cmdk max-w-full h-cmdk-body max-h-cmdk-body')}>
+      className={cn(
+        'w-cmdk max-w-full h-cmdk-body max-h-cmdk-body',
+        'overflow-hidden'
+      )}>
       {view}
     </div>
   )
