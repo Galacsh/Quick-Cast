@@ -1,22 +1,22 @@
-import { cn } from '@/lib/utils'
-import Shortcut from '../shortcut'
 import { forwardRef } from 'react'
-import type { Keystroke } from '@/types'
+import Shortcut from '@/cast/components/shortcut'
+import { cn } from '@/lib/utils'
+import type { Keystroke } from '@/cast/types'
 
 type FooterButtonProps = {
   text: string
   shortcut?: Keystroke
+  onClick?: () => void
   className?: string
-  onTrigger?: () => void
 }
 
 const FooterButton = forwardRef<HTMLButtonElement, FooterButtonProps>(
-  ({ text: title, shortcut, onTrigger, className, ...props }, ref) => {
+  ({ text: title, shortcut, onClick, className, ...props }, ref) => {
     return (
       <button
         ref={ref}
-        onClick={onTrigger}
         tabIndex={-1}
+        onClick={onClick}
         className={cn(
           'group',
           'p-1 rounded-md',
@@ -24,22 +24,15 @@ const FooterButton = forwardRef<HTMLButtonElement, FooterButtonProps>(
           'text-xs font-normal whitespace-nowrap',
           'text-foreground bg-transparent hover:bg-cmdk-background-footer-accent transition-none',
           'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-          'disabled:pointer-events-none disabled:opacity-50',
           className
         )}
         {...props}>
         <span className="px-1">{title}</span>
-        {shortcut && (
-          <Shortcut
-            keystroke={shortcut}
-            onKeystroke={onTrigger}
-            className="ml-1"
-          />
-        )}
+        {shortcut && <Shortcut keystroke={shortcut} className="ml-1" />}
       </button>
     )
   }
 )
-FooterButton.displayName = 'FooterButton'
+FooterButton.displayName = 'CastFooterButton'
 
 export default FooterButton

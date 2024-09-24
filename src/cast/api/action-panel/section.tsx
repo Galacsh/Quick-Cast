@@ -1,26 +1,25 @@
 import { CommandGroup } from 'cmdk'
 import { cn } from '@/lib/utils'
-import type { ReactNode } from 'react'
+import type { ActionPanelSectionProps } from '@/cast/types'
 
-type SuggestionGroupProps = {
-  heading: string
-  children?: ReactNode
-}
-
-export default function SuggestionGroup({
-  heading,
+export default function Section({
+  title,
+  className,
   children,
-}: SuggestionGroupProps) {
+  ...props
+}: ActionPanelSectionProps) {
   return (
     <CommandGroup
-      heading={heading}
+      {...props}
+      heading={title}
       className={cn(
         'mt-2 first:mt-0',
         '[&>[cmdk-group-heading]]:p-2 [&>[cmdk-group-heading]]:pt-1',
         '[&>[cmdk-group-heading]]:flex [&>[cmdk-group-heading]]:items-center',
         '[&>[cmdk-group-heading]]:text-xs [&>[cmdk-group-heading]]:font-medium',
         '[&>[cmdk-group-heading]]:text-cmdk-section-title',
-        '[&>[cmdk-group-heading]]:select-none'
+        '[&>[cmdk-group-heading]]:select-none',
+        className
       )}>
       {children}
     </CommandGroup>
