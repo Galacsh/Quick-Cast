@@ -1,9 +1,28 @@
+import { useCallback } from 'react'
 import { List, ActionPanel, Action } from '@/cast/api'
-import { useNavigation } from '@/cast/contexts'
+import { useNavigation, useSearch } from '@/cast/contexts'
 import { extensions } from '@/extensions'
+import type { Command } from '@/cast/types'
 
 export default function Home() {
   const { push } = useNavigation()
+  const { clear } = useSearch()
+
+  const openView = useCallback(
+    (cmd: Extract<Command, { mode: 'view' }>) => {
+      push(cmd.view)
+      clear()
+    },
+    [clear, push]
+  )
+
+  const runAction = useCallback(
+    (cmd: Extract<Command, { mode: 'no-view' }>) => {
+      cmd.action()
+      window.close()
+    },
+    []
+  )
 
   return (
     <List
@@ -22,16 +41,13 @@ export default function Home() {
                     <Action
                       isDefault
                       title="Open Command"
-                      onAction={() => push(cmd.view)}
+                      onAction={() => openView(cmd)}
                     />
                   ) : (
                     <Action
                       isDefault
                       title="Run Command"
-                      onAction={() => {
-                        cmd.action()
-                        window.close()
-                      }}
+                      onAction={() => runAction(cmd)}
                     />
                   )}
                 </ActionPanel>
