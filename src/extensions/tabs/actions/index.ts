@@ -1,4 +1,5 @@
 import { payloadRequester } from '@/extensions/utils'
+import type { TabGroup } from '@/types'
 
 const switchToTab = payloadRequester<{ tabId: number }>(
   'switch-to-tab',
@@ -31,14 +32,41 @@ const toggleBookmark = payloadRequester<{ tabId: number }>(
   }
 )
 
+// =====================================================================
+
+const toggleCollapseGroup = payloadRequester<{ tabGroup: TabGroup }>(
+  'toggle-collapse-group',
+  async ({ tabGroup }) => {
+    const { id, collapsed } = tabGroup
+    await chrome.tabGroups.update(id, { collapsed: !collapsed })
+  }
+)
+
+const closeTabGroup = payloadRequester<{ tabGroup: TabGroup }>(
+  'close-tab-group',
+  async ({ tabGroup }) => {
+    const tabs = await chrome.tabs.query({ groupId: tabGroup.id })
+    const ids = tabs.map((tab) => tab.id).filter((id) => id != null)
+    await chrome.tabs.remove(ids)
+  }
+)
+
 export const requesters = {
+  // Tab
   switchToTab: switchToTab.requester,
   closeTab: closeTab.requester,
   toggleBookmark: toggleBookmark.requester,
+  // Tab Group
+  toggleCollapseGroup: toggleCollapseGroup.requester,
+  closeTabGroup: closeTabGroup.requester,
 }
 
 export const handlers = {
+  // Tab
   [switchToTab.id]: switchToTab.handler,
   [closeTab.id]: closeTab.handler,
   [toggleBookmark.id]: toggleBookmark.handler,
+  // Tab Group
+  [toggleCollapseGroup.id]: toggleCollapseGroup.handler,
+  [closeTabGroup.id]: closeTabGroup.handler,
 }
