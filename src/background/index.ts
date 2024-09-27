@@ -33,6 +33,10 @@ function onInstallOrUpdate(detail: chrome.runtime.InstalledDetails) {
   }
 }
 
+function onConnect() {
+  console.log(`Connected - ${new Date().toLocaleString()}`)
+}
+
 function onAction(
   message: Message<unknown>,
   _: MessageSender,
@@ -77,5 +81,6 @@ function onAction(
 
 // ======================================================
 
+chrome.runtime.onConnect.addListener(onConnect)
 chrome.runtime.onInstalled.addListener(onInstallOrUpdate)
 chrome.runtime.onMessage.addListener(onAction)
