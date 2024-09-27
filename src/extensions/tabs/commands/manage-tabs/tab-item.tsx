@@ -52,15 +52,11 @@ export default function TabItem({ tab, group }: TabItemProps) {
   return (
     <List.Item
       key={tab.id}
+      icon={isBookmark ? BookmarkFilledIcon : BookmarkIcon}
       title={tab.title || 'Untitled'}
-      subtitle={group?.title}
       keywords={tab.url != null ? [tab.url] : undefined}
       accessories={
-        isBookmark ? (
-          <BookmarkFilledIcon className="size-4 text-foreground" />
-        ) : (
-          <BookmarkIcon className="size-4 text-cmdk-placeholder" />
-        )
+        <span className="text-cmdk-placeholder">{group?.title}</span>
       }
       actions={
         <ActionPanel>
