@@ -10,6 +10,7 @@ export default function Item({
   icon: Icon,
   title,
   subtitle,
+  keywords,
   accessories,
   actions: ActionPanel,
   className,
@@ -60,7 +61,7 @@ export default function Item({
     <CommandItem
       ref={ref}
       value={id.current}
-      keywords={[title]}
+      keywords={keywords != null ? [title, ...keywords] : [title]}
       className={cn(
         'h-10 px-2',
         'flex items-center justify-between gap-2',

@@ -35,6 +35,7 @@ export type ItemProps = {
   icon?: ComponentType<{ className?: string }>
   title: string
   subtitle?: string
+  keywords?: string[]
   accessories?: ReactNode
   actions: ActionPanelElement
   className?: string
