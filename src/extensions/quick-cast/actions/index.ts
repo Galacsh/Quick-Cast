@@ -1,10 +1,10 @@
 import { requester } from '@/extensions/utils'
 
-const reload = requester('reload-quick-cast', async () => {
+const reload = requester('quick-cast-reload', async () => {
   await chrome.runtime.reload()
 })
 
-const optionsPage = requester('open-quick-cast-options-page', async () => {
+const optionsPage = requester('quick-cast-open-options-page', async () => {
   await chrome.runtime.openOptionsPage()
 })
 

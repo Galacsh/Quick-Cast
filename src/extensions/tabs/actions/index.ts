@@ -2,21 +2,21 @@ import { payloadRequester } from '@/extensions/utils'
 import type { TabGroup } from '@/types'
 
 const switchToTab = payloadRequester<{ tabId: number }>(
-  'switch-to-tab',
+  'tab-switch',
   async ({ tabId }) => {
     await chrome.tabs.update(tabId, { muted: false, active: true })
   }
 )
 
 const closeTab = payloadRequester<{ tabId: number }>(
-  'close-tab',
+  'tab-close',
   async ({ tabId }) => {
     await chrome.tabs.remove(tabId)
   }
 )
 
 const toggleBookmark = payloadRequester<{ tabId: number }>(
-  'toggle-bookmark',
+  'tab-toggle-bookmark',
   async ({ tabId }) => {
     const tab = await chrome.tabs.get(tabId)
     if (tab.url == null) throw new Error("Tab's URL doen't exist.")
@@ -35,7 +35,7 @@ const toggleBookmark = payloadRequester<{ tabId: number }>(
 // =====================================================================
 
 const toggleCollapseGroup = payloadRequester<{ tabGroup: TabGroup }>(
-  'toggle-collapse-group',
+  'tab-group-toggle-collapse',
   async ({ tabGroup }) => {
     const { id, collapsed } = tabGroup
     await chrome.tabGroups.update(id, { collapsed: !collapsed })
@@ -43,7 +43,7 @@ const toggleCollapseGroup = payloadRequester<{ tabGroup: TabGroup }>(
 )
 
 const closeTabGroup = payloadRequester<{ tabGroup: TabGroup }>(
-  'close-tab-group',
+  'tab-group-close',
   async ({ tabGroup }) => {
     const tabs = await chrome.tabs.query({ groupId: tabGroup.id })
     const ids = tabs.map((tab) => tab.id).filter((id) => id != null)
