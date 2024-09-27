@@ -7,13 +7,20 @@ function ActionPanel({ className, children }: ActionPanelProps) {
   return (
     <Command
       className={cn(
-        'max-w-[80dvw] w-[356px] max-h-[80dvh] h-full',
+        'h-full w-full',
         'text-foreground outline-none',
         'bg-cmdk-background-footer',
         'border rounded-lg',
         className
       )}>
-      <CommandList className={cn('p-2', 'overflow-auto overscroll-contain')}>
+      <CommandList
+        className={cn(
+          'max-w-[80dvw] w-[356px] max-h-[60dvh] h-full p-2',
+          'overflow-auto overscroll-contain',
+          '[&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar]:bg-transparent',
+          '[&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-track:hover]:bg-transparent',
+          '[&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-foreground/20'
+        )}>
         <CommandEmpty
           className={cn(
             'w-full h-16',

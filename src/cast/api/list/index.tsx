@@ -43,7 +43,10 @@ function List({
       <CommandList
         className={cn(
           'w-full max-h-[calc(100%-3.5rem)] p-2',
-          'overflow-auto overscroll-contain'
+          'overflow-auto overscroll-contain',
+          '[&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar]:bg-transparent',
+          '[&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-track:hover]:bg-transparent',
+          '[&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-foreground/20'
         )}>
         <CommandEmpty
           className={cn(

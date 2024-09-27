@@ -58,16 +58,31 @@ export default function Action({
       className={cn(
         'group',
         'h-10 px-2',
-        'flex items-center justify-between gap-2',
+        'flex items-center justify-between gap-3',
         'cursor-pointer select-none',
         'text-sm',
         'rounded-md',
         'aria-selected:bg-cmdk-background-footer-accent'
       )}>
-      {Icon && <Icon className="size-4" />}
-      <span>{title}</span>
-      {shortcut && <Shortcut keystroke={shortcut} />}
-      {isDefault && !shortcut && <Shortcut keystroke={{ code: 'Enter' }} />}
+      <div className="max-w-full flex items-center gap-2 min-w-0">
+        {Icon && (
+          <div className="size-[1.125rem] flex items-center justify-center shrink-0">
+            <Icon className="size-4" />
+          </div>
+        )}
+        <span className="text-foreground truncate max-w-full flex-grow">
+          {title}
+        </span>
+      </div>
+      {(isDefault || shortcut) && (
+        <div className="shrink-0">
+          {isDefault ? (
+            <Shortcut keystroke={{ code: 'Enter' }} />
+          ) : (
+            shortcut && <Shortcut keystroke={shortcut} />
+          )}
+        </div>
+      )}
     </CommandItem>
   )
 }
