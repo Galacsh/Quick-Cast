@@ -16,6 +16,7 @@ import { ArrowLeftIcon } from '@radix-ui/react-icons'
 function List({
   navigationTitle,
   searchBarPlaceholder,
+  filtering = true,
   className,
   children,
 }: ListProps) {
@@ -65,6 +66,7 @@ function List({
 
   return (
     <Command
+      shouldFilter={filtering}
       className={cn(
         'h-full w-full',
         'text-foreground bg-background outline-none'

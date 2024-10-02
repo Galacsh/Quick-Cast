@@ -55,6 +55,7 @@ export type ItemSectionProps = {
 export type ListProps = {
   navigationTitle: string
   searchBarPlaceholder: string
+  filtering?: boolean
   className?: string
   children?:
     | ItemElement
