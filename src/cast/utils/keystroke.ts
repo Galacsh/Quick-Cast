@@ -1,6 +1,10 @@
 import type { Keystroke } from '../types'
+import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 
-export function isKeystroke(k: Keystroke, e: KeyboardEvent): boolean {
+export function isKeystroke(
+  k: Keystroke,
+  e: KeyboardEvent | ReactKeyboardEvent<unknown>
+): boolean {
   const {
     code,
     alt: altKey = false,

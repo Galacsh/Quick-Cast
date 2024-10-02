@@ -1,9 +1,33 @@
-import { cn } from '@/lib/utils'
+import { useCallback, type KeyboardEvent as ReactKeyboardEvent } from 'react'
 import { Command, CommandEmpty, CommandInput, CommandList } from 'cmdk'
 import Section from './section'
+import { useActions, usePanel } from '@/cast/contexts'
+import { isKeystroke } from '@/cast/utils'
+import { cn } from '@/lib/utils'
 import type { ActionPanelProps } from '@/cast/types'
 
 function ActionPanel({ className, children }: ActionPanelProps) {
+  const { actions } = useActions()
+  const { setPanelOpen } = usePanel()
+
+  const onShortcut = useCallback(
+    (e: ReactKeyboardEvent<HTMLInputElement>) => {
+      if (isKeystroke({ code: 'Enter' }, e)) return
+
+      for (const action of actions) {
+        if (action.shortcut == null) continue
+        if (isKeystroke(action.shortcut, e)) {
+          e.stopPropagation()
+          e.preventDefault()
+          action.onAction()
+          setPanelOpen(false)
+          return
+        }
+      }
+    },
+    [actions, setPanelOpen]
+  )
+
   return (
     <Command
       className={cn(
@@ -35,6 +59,7 @@ function ActionPanel({ className, children }: ActionPanelProps) {
       </CommandList>
       <CommandInput
         placeholder="Search for actions..."
+        onKeyDown={onShortcut}
         className={cn(
           'w-full h-10 px-4 py-2',
           'bg-transparent text-foreground placeholder:text-cmdk-placeholder',

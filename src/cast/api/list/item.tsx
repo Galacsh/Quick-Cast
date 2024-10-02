@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { CommandItem, useCommandState } from 'cmdk'
 import { v4 as uuid } from 'uuid'
 import { useActions, usePanel } from '@/cast/contexts'
-import { isKeystroke, toActions } from '@/cast/utils'
+import { toActions } from '@/cast/utils'
 import { cn } from '@/lib/utils'
 import type { ItemProps } from '@/cast/types'
 
@@ -16,7 +16,7 @@ export default function Item({
   className,
 }: ItemProps) {
   const id = useRef<string>(uuid())
-  const { setContent, isPanelOpen } = usePanel()
+  const { setContent } = usePanel()
   const { defaultAction, setActions } = useActions()
   const isSelected = useCommandState(({ value }) => value === id.current)
   const ref = useRef<HTMLDivElement>(null)
@@ -40,22 +40,6 @@ export default function Item({
     node?.addEventListener('click', onClick)
     return () => node?.removeEventListener('click', onClick)
   }, [defaultAction])
-
-  // on select event
-  useEffect(() => {
-    function onKeydown(e: KeyboardEvent) {
-      if (isPanelOpen || !isSelected) return
-
-      if (isKeystroke({ code: 'Enter' }, e)) {
-        e.preventDefault()
-        e.stopImmediatePropagation()
-        defaultAction?.onAction()
-      }
-    }
-
-    window.addEventListener('keydown', onKeydown)
-    return () => window.removeEventListener('keydown', onKeydown)
-  }, [defaultAction, isPanelOpen, isSelected])
 
   return (
     <CommandItem

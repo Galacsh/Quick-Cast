@@ -39,15 +39,15 @@ export default function Home() {
                 <ActionPanel>
                   {cmd.mode === 'view' ? (
                     <Action
-                      isDefault
                       title="Open Command"
                       onAction={() => openView(cmd)}
+                      shortcut={{ code: 'Enter' }}
                     />
                   ) : (
                     <Action
-                      isDefault
                       title="Run Command"
                       onAction={() => runAction(cmd)}
+                      shortcut={{ code: 'Enter' }}
                     />
                   )}
                 </ActionPanel>

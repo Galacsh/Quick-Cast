@@ -1,11 +1,17 @@
-import { useEffect } from 'react'
+import {
+  useCallback,
+  useEffect,
+  type KeyboardEvent as ReactKeyboardEvent,
+} from 'react'
 import { Command, CommandEmpty, CommandInput, CommandList } from 'cmdk'
 import Item from './item'
 import Section from './section'
 import EmptyWatcher from './empty-watcher'
-import { useSearch, useNavigation } from '@/cast/contexts'
+import { useSearch, useNavigation, usePanel, useActions } from '@/cast/contexts'
 import { cn } from '@/lib/utils'
 import type { ListProps } from '@/cast/types'
+import { isKeystroke } from '@/cast/utils'
+import { ArrowLeftIcon } from '@radix-ui/react-icons'
 
 function List({
   navigationTitle,
@@ -13,12 +19,49 @@ function List({
   className,
   children,
 }: ListProps) {
-  const { ref: searchRef, search, setSearch } = useSearch()
-  const { setTitle } = useNavigation()
+  const { ref: searchRef, search, setSearch, clear } = useSearch()
+  const { pop, isRoot, setTitle } = useNavigation()
+  const { actions } = useActions()
+  const { isPanelOpen } = usePanel()
 
   useEffect(() => {
     setTitle(navigationTitle)
   }, [navigationTitle, setTitle])
+
+  useEffect(() => {
+    function previous(e: KeyboardEvent) {
+      if (isPanelOpen) return
+
+      if (e.key === 'Backspace' && search === '' && !isRoot()) {
+        e.stopImmediatePropagation()
+        e.preventDefault()
+        pop()
+      } else if (e.key === 'Escape') {
+        e.stopImmediatePropagation()
+        e.preventDefault()
+        if (search === '') pop()
+        else clear()
+      }
+    }
+
+    window.addEventListener('keydown', previous)
+    return () => window.removeEventListener('keydown', previous)
+  }, [clear, isPanelOpen, isRoot, pop, search])
+
+  const onShortcut = useCallback(
+    (e: ReactKeyboardEvent<HTMLInputElement>) => {
+      for (const action of actions) {
+        if (action.shortcut == null) continue
+        if (isKeystroke(action.shortcut, e)) {
+          e.stopPropagation()
+          e.preventDefault()
+          action.onAction()
+          return
+        }
+      }
+    },
+    [actions]
+  )
 
   return (
     <Command
@@ -26,20 +69,41 @@ function List({
         'h-full w-full',
         'text-foreground bg-background outline-none'
       )}>
-      <CommandInput
-        ref={searchRef}
-        autoFocus
-        value={search}
-        onValueChange={setSearch}
-        placeholder={searchBarPlaceholder}
+      <div
         className={cn(
-          'w-full h-14',
-          'bg-transparent text-foreground placeholder:text-cmdk-placeholder',
-          'outline-none border-cmdk-background-separator',
-          'p-4 border-b',
-          className
+          'w-full h-14 px-4',
+          'flex items-center gap-2',
+          'border-b border-cmdk-background-separator'
+        )}>
+        {!isRoot() && (
+          <button
+            type="button"
+            tabIndex={-1}
+            onClick={pop}
+            className={cn(
+              'size-6 shrink-0 rounded-md',
+              'inline-flex items-center justify-center',
+              'bg-cmdk-background-kbd hover:bg-cmdk-background-kbd-accent',
+              'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring'
+            )}>
+            <ArrowLeftIcon className="size-4" />
+          </button>
         )}
-      />
+        <CommandInput
+          ref={searchRef}
+          autoFocus
+          value={search}
+          onValueChange={setSearch}
+          placeholder={searchBarPlaceholder}
+          onKeyDown={onShortcut}
+          className={cn(
+            'flex-grow w-full h-14 py-4',
+            'bg-transparent text-foreground placeholder:text-cmdk-placeholder',
+            'outline-none',
+            className
+          )}
+        />
+      </div>
       <CommandList
         className={cn(
           'w-full max-h-[calc(100%-3.5rem)] p-2',

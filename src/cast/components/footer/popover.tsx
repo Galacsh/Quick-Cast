@@ -16,19 +16,22 @@ export default function FooterPopover({
   const { isPanelOpen, setPanelOpen } = usePanel()
   const { enableScrolling, disableScrolling } = useMain()
 
-  const onEscapeKeyDown = useCallback(
-    (e: Event) => e.stopImmediatePropagation(),
-    []
-  )
+  /** Prevent escape key triggering "pop view" */
+  const onEscapeKeyDown = useCallback(function (e: Event) {
+    e.stopImmediatePropagation()
+  }, [])
 
+  /** Focus search bar on close */
   const onCloseAutoFocus = useCallback(
-    (e: Event) => {
+    function (e: Event) {
+      e.stopImmediatePropagation()
       e.preventDefault()
       focusSearchBar()
     },
     [focusSearchBar]
   )
 
+  // Toggle popover on `Ctrl(Meta) + K`
   useEffect(() => {
     function onShortcut(e: KeyboardEvent) {
       if (isKeystroke({ code: 'KeyK', ctrlMeta: true }, e)) {
@@ -42,6 +45,7 @@ export default function FooterPopover({
     return () => window.removeEventListener('keydown', onShortcut)
   }, [setPanelOpen])
 
+  // Disable scrolling on popover open
   useEffect(() => {
     if (isPanelOpen) disableScrolling()
     else enableScrolling()

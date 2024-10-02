@@ -9,7 +9,7 @@ export function useActions() {
   }
 
   const { actions, setActions } = context
-  const defaultAction = actions.find((action) => action.isDefault)
+  const defaultAction = actions.at(0)
 
   return {
     actions,

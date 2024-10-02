@@ -1,9 +1,8 @@
-import { useEffect, useRef } from 'react'
-import { CommandItem, useCommandState } from 'cmdk'
+import { useCallback, useRef } from 'react'
+import { CommandItem } from 'cmdk'
 import { v4 as uuid } from 'uuid'
 import { Shortcut } from '@/cast/components'
 import { usePanel } from '@/cast/contexts'
-import { isKeystroke } from '@/cast/utils'
 import { cn } from '@/lib/utils'
 import type { ActionProps } from '@/cast/types'
 
@@ -12,49 +11,22 @@ export default function Action({
   title,
   shortcut,
   onAction,
-  isDefault = false,
 }: ActionProps) {
   const id = useRef<string>(uuid())
   const ref = useRef<HTMLDivElement>(null)
-  const isSelected = useCommandState(({ value }) => value === id.current)
-  const { isPanelOpen, setPanelOpen } = usePanel()
+  const { setPanelOpen } = usePanel()
 
-  // click event
-  useEffect(() => {
-    const node = ref.current
-
-    function onClick() {
-      onAction()
-      setPanelOpen(false)
-    }
-
-    node?.addEventListener('click', onClick)
-    return () => node?.removeEventListener('click', onClick)
+  const onSelect = useCallback(() => {
+    onAction()
+    setPanelOpen(false)
   }, [onAction, setPanelOpen])
-
-  // keyboard event
-  useEffect(() => {
-    function onShortcut(e: KeyboardEvent) {
-      if (!isPanelOpen) return
-
-      if (isSelected && isKeystroke({ code: 'Enter' }, e)) {
-        e.preventDefault()
-        e.stopImmediatePropagation()
-        onAction()
-        setPanelOpen(false)
-        return
-      }
-    }
-
-    window.addEventListener('keydown', onShortcut)
-    return () => window.removeEventListener('keydown', onShortcut)
-  }, [isPanelOpen, isSelected, onAction, setPanelOpen])
 
   return (
     <CommandItem
       ref={ref}
       value={id.current}
       keywords={[title]}
+      onSelect={onSelect}
       className={cn(
         'group',
         'h-10 px-2',
@@ -74,13 +46,9 @@ export default function Action({
           {title}
         </span>
       </div>
-      {(isDefault || shortcut) && (
+      {shortcut && (
         <div className="shrink-0">
-          {isDefault ? (
-            <Shortcut keystroke={{ code: 'Enter' }} />
-          ) : (
-            shortcut && <Shortcut keystroke={shortcut} />
-          )}
+          <Shortcut keystroke={shortcut} />
         </div>
       )}
     </CommandItem>

@@ -25,8 +25,8 @@ export function toActions(panel: ActionPanelElement): ActionEssentials[] {
 }
 
 function fromActionElement(elem: ActionElement): ActionEssentials {
-  const { title, isDefault, shortcut, onAction } = elem.props
-  return { title, isDefault, shortcut, onAction }
+  const { title, shortcut, onAction } = elem.props
+  return { title, shortcut, onAction }
 }
 
 function fromActionElements(
