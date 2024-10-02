@@ -26,6 +26,7 @@ export type Tab = chrome.tabs.Tab
 export type TabGroup = chrome.tabGroups.TabGroup
 export type BookmarkNode = chrome.bookmarks.BookmarkTreeNode
 export type BookmarkRemoveInfo = chrome.bookmarks.BookmarkRemoveInfo
+export type History = chrome.history.HistoryItem
 export type MessageSender = chrome.runtime.MessageSender
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type SendResponse = (response?: any) => void
