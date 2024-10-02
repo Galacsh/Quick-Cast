@@ -21,7 +21,7 @@ const FooterButton = forwardRef<HTMLButtonElement, FooterButtonProps>(
           'group',
           'p-1 rounded-md',
           'inline-flex items-center justify-center',
-          'text-xs font-normal whitespace-nowrap',
+          'text-xs font-normal whitespace-nowrap select-none',
           'text-foreground bg-transparent hover:bg-cmdk-background-footer-accent transition-none',
           'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
           className

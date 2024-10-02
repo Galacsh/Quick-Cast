@@ -37,11 +37,11 @@ export default function Command() {
     <List
       navigationTitle="Manage Tabs"
       searchBarPlaceholder="Search for a tab to manage...">
-      {grouped.map((group, idx) => {
-        if (Array.isArray(group)) {
-          return <TabGroupItem key={`group-${idx}`} tabs={group} />
+      {grouped.map((obj, idx) => {
+        if (Array.isArray(obj)) {
+          return <TabGroupItem key={`group-${idx}`} tabs={obj} />
         } else {
-          return <TabItem key={group.id} tab={group} />
+          return <TabItem key={obj.id} tab={obj} />
         }
       })}
     </List>

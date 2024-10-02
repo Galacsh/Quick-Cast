@@ -1,5 +1,5 @@
-import { payloadRequester } from '@/extensions/utils'
-import type { TabGroup } from '@/types'
+import { payloadRequester, requester } from '@/extensions/utils'
+import type { Tab, TabGroup } from '@/types'
 
 const switchToTab = payloadRequester<{ tabId: number }>(
   'tab-switch',
@@ -32,6 +32,34 @@ const toggleBookmark = payloadRequester<{ tabId: number }>(
   }
 )
 
+const togglePin = payloadRequester<{ tab: Tab }>(
+  'tab-toggle-pin',
+  async ({ tab }) => {
+    if (tab.id == null) return
+    await chrome.tabs.update(tab.id, { pinned: !tab.pinned })
+  }
+)
+
+const createTab = requester('tab-create', async () => {
+  await chrome.tabs.create({})
+})
+
+const removeFromGroup = payloadRequester<{ tab: Tab }>(
+  'tab-remove-from-group',
+  async ({ tab }) => {
+    if (tab.id == null) return
+    await chrome.tabs.ungroup(tab.id)
+  }
+)
+
+const moveToGroup = payloadRequester<{ tab: Tab; tabGroup: TabGroup }>(
+  'tab-move-to-group',
+  async ({ tab, tabGroup }) => {
+    if (tab.id == null || tabGroup.id == null) return
+    await chrome.tabs.group({ groupId: tabGroup.id, tabIds: tab.id })
+  }
+)
+
 // =====================================================================
 
 const toggleCollapseGroup = payloadRequester<{ tabGroup: TabGroup }>(
@@ -51,14 +79,46 @@ const closeTabGroup = payloadRequester<{ tabGroup: TabGroup }>(
   }
 )
 
+const createTabGroup = payloadRequester<{ name: string; tabs: Tab[] }>(
+  'tab-group-create',
+  async ({ name, tabs }) => {
+    const groupId = await chrome.tabs.group({
+      tabIds: tabs.map((tab) => tab.id).filter((id) => id != null),
+    })
+
+    await chrome.tabGroups.update(groupId, { title: name })
+  }
+)
+
+const editTabGroupName = payloadRequester<{ name: string; tabGroup: TabGroup }>(
+  'tab-group-create',
+  async ({ name, tabGroup }) => {
+    await chrome.tabGroups.update(tabGroup.id, { title: name })
+  }
+)
+
+const excludeTabs = payloadRequester<{ tabs: Tab[] }>(
+  'tab-group-exclude',
+  async ({ tabs }) => {
+    await chrome.tabs.ungroup(tabs.map((t) => t.id).filter((id) => id != null))
+  }
+)
+
 export const requesters = {
   // Tab
   switchToTab: switchToTab.requester,
   closeTab: closeTab.requester,
   toggleBookmark: toggleBookmark.requester,
+  togglePin: togglePin.requester,
+  createTab: createTab.requester,
+  removeFromGroup: removeFromGroup.requester,
+  moveToGroup: moveToGroup.requester,
   // Tab Group
   toggleCollapseGroup: toggleCollapseGroup.requester,
   closeTabGroup: closeTabGroup.requester,
+  createTabGroup: createTabGroup.requester,
+  editTabGroupName: editTabGroupName.requester,
+  excludeTabs: excludeTabs.requester,
 }
 
 export const handlers = {
@@ -66,7 +126,14 @@ export const handlers = {
   [switchToTab.id]: switchToTab.handler,
   [closeTab.id]: closeTab.handler,
   [toggleBookmark.id]: toggleBookmark.handler,
+  [togglePin.id]: togglePin.handler,
+  [createTab.id]: createTab.handler,
+  [removeFromGroup.id]: removeFromGroup.handler,
+  [moveToGroup.id]: moveToGroup.handler,
   // Tab Group
   [toggleCollapseGroup.id]: toggleCollapseGroup.handler,
   [closeTabGroup.id]: closeTabGroup.handler,
+  [createTabGroup.id]: createTabGroup.handler,
+  [editTabGroupName.id]: editTabGroupName.handler,
+  [excludeTabs.id]: excludeTabs.handler,
 }
