@@ -1,4 +1,10 @@
-import type { ComponentType, ReactElement, ReactNode } from 'react'
+import type {
+  ReactNode,
+  ReactElement,
+  ComponentType,
+  FocusEventHandler,
+  ChangeEventHandler,
+} from 'react'
 
 export type Keystroke = {
   code: KeyboardEvent['code']
@@ -13,7 +19,6 @@ export type ActionEssentials = {
   title: string
   shortcut?: Keystroke
   onAction: () => void
-  isDefault?: boolean
 }
 
 export type ActionProps = ActionEssentials & {
@@ -53,9 +58,51 @@ export type ListProps = {
   className?: string
   children?:
     | ItemElement
-    | Iterable<ItemElement>
     | ItemSectionElement
-    | Iterable<ItemSectionElement>
+    | Iterable<ItemElement | ItemSectionElement>
+}
+
+export type FormTextFieldProps = {
+  autoFocus?: boolean
+  defaultValue?: string
+  error?: string
+  placeholder?: string
+  title?: string
+  value?: string
+  onBlur?: FocusEventHandler<HTMLInputElement>
+  onChange?: ChangeEventHandler<HTMLInputElement>
+  onFocus?: FocusEventHandler<HTMLInputElement>
+  className?: string
+}
+
+export type FormMultiSelectProps = {
+  autoFocus?: boolean
+  error?: string
+  placeholder?: string
+  title?: string
+  hasSelectedItems?: boolean
+  className?: string
+  children?: FormMultiSelectItemElement | Iterable<FormMultiSelectItemElement>
+}
+
+export type FormMultiSelectItemProps = {
+  onSelect?: () => void
+  onDeselect?: () => void
+  title: string
+  subtitle?: string
+  keywords?: string[]
+  accessories?: ReactNode
+  className?: string
+}
+
+export type FormProps = {
+  navigationTitle: string
+  actions: ActionPanelElement
+  className?: string
+  children?:
+    | FormTextFieldElement
+    | FormMultiSelectElement
+    | Iterable<FormTextFieldElement | FormMultiSelectElement>
 }
 
 export type ActionPanelElement = ReactElement<ActionPanelProps>
@@ -74,6 +121,12 @@ type ListElement = ReactElement<ListProps>
 type ItemSectionElement = ReactElement<ItemSectionProps>
 
 type ItemElement = ReactElement<ItemProps>
+
+type FormTextFieldElement = ReactElement<FormTextFieldProps>
+
+type FormMultiSelectElement = ReactElement<FormMultiSelectProps>
+
+type FormMultiSelectItemElement = ReactElement<FormMultiSelectItemProps>
 
 // =============================
 
