@@ -4,7 +4,7 @@ import type { Command } from '@/cast/types'
 
 export default {
   icon: ReaderIcon,
-  name: 'Manage tabs',
+  name: 'Manage Tabs',
   mode: 'view',
   view: <Main />,
 } satisfies Command

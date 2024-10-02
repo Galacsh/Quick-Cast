@@ -4,7 +4,7 @@ import type { Command } from '@/cast/types'
 
 export default {
   icon: CardStackIcon,
-  name: 'Manage tab groups',
+  name: 'Manage Tab Groups',
   mode: 'view',
   view: <Main />,
 } satisfies Command

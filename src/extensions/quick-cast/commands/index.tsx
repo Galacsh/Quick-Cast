@@ -11,7 +11,7 @@ export default [
   },
   {
     icon: GearIcon,
-    name: 'Open options page',
+    name: 'Open Options Page',
     mode: 'no-view',
     action: requesters.openQuickCastOptionsPage,
   },
