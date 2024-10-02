@@ -26,7 +26,9 @@ function notifyInstallation(extensionName: string) {
 
 function onInstallOrUpdate(detail: chrome.runtime.InstalledDetails) {
   if (detail.previousVersion) {
-    notifyVersionUpdate(detail.previousVersion, version)
+    if (detail.previousVersion !== version) {
+      notifyVersionUpdate(detail.previousVersion, version)
+    }
   } else {
     notifyInstallation(name)
     openOptionsPage()
