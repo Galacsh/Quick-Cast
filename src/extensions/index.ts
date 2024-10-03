@@ -1,16 +1,7 @@
-import {
-  extension as quickCast,
-  handlers as quickCastHandlers,
-} from './quick-cast'
-import { extension as tabsExtension, handlers as tabsHandlers } from './tabs'
-import {
-  extension as historiesExtension,
-  handlers as historiesHandlers,
-} from './histories'
-import {
-  extension as bookmarksExtension,
-  handlers as bookmarksHandlers,
-} from './bookmarks'
+import { extension as quickCast } from './quick-cast'
+import { extension as tabsExtension } from './tabs'
+import { extension as historiesExtension } from './histories'
+import { extension as bookmarksExtension } from './bookmarks'
 import type { Extension } from '@/cast/types'
 
 export const extensions: Extension[] = [
@@ -19,9 +10,3 @@ export const extensions: Extension[] = [
   historiesExtension,
   quickCast,
 ]
-export const handlers = {
-  ...tabsHandlers,
-  ...bookmarksHandlers,
-  ...historiesHandlers,
-  ...quickCastHandlers,
-}

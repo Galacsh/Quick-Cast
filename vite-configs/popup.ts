@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
-import { src, withBase } from './base'
+import { src, withReactBase } from './base'
 import type { BuildOptions } from 'vite'
 
 const plugins = undefined
@@ -17,4 +17,4 @@ const buildOptions: BuildOptions = {
   },
 }
 
-export default defineConfig(withBase(buildOptions, plugins))
+export default defineConfig(withReactBase(buildOptions, plugins))

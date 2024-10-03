@@ -21,7 +21,7 @@ export const withBase = (
     define: {
       'process.env.NODE_ENV': isDev ? '"development"' : '"production"',
     },
-    plugins: plugins ? [react(), ...plugins] : [react()],
+    plugins,
     build: {
       outDir: dist,
       emptyOutDir: false,
@@ -32,4 +32,12 @@ export const withBase = (
       ...buildOptions,
     },
   }
+}
+
+export const withReactBase = (
+  buildOptions: BuildOptions,
+  plugins?: PluginOption[]
+): UserConfig => {
+  const _plugins = plugins ? [react(), ...plugins] : [react()]
+  return withBase(buildOptions, _plugins)
 }
