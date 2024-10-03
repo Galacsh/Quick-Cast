@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { EnterFullScreenIcon, ExitFullScreenIcon } from '@radix-ui/react-icons'
+import { BoxModelIcon, TransparencyGridIcon } from '@radix-ui/react-icons'
 import CreateGroupForm from './create-group-form'
 import EditGroupNameForm from './edit-group-name-form'
 import { Action, ActionPanel, List } from '@/cast/api'
@@ -41,7 +41,7 @@ export default function Command() {
       {tabGroups.map((tabGroup) => (
         <List.Item
           key={tabGroup.id}
-          icon={tabGroup.collapsed ? ExitFullScreenIcon : EnterFullScreenIcon}
+          icon={tabGroup.collapsed ? TransparencyGridIcon : BoxModelIcon}
           title={tabGroup.title || 'Untitled'}
           actions={
             <ActionPanel>
