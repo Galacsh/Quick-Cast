@@ -49,6 +49,7 @@ const manifest = {
     'tabGroups',
     'bookmarks',
     'history',
+    'favicon',
   ],
   web_accessible_resources: [
     {
