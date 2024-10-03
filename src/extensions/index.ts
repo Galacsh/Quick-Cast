@@ -7,15 +7,21 @@ import {
   extension as historiesExtension,
   handlers as historiesHandlers,
 } from './histories'
+import {
+  extension as bookmarksExtension,
+  handlers as bookmarksHandlers,
+} from './bookmarks'
 import type { Extension } from '@/cast/types'
 
 export const extensions: Extension[] = [
   tabsExtension,
+  bookmarksExtension,
   historiesExtension,
   quickCast,
 ]
 export const handlers = {
   ...tabsHandlers,
+  ...bookmarksHandlers,
   ...historiesHandlers,
   ...quickCastHandlers,
 }
