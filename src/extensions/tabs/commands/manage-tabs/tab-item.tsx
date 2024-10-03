@@ -76,13 +76,22 @@ export default function TabItem({ tab, group }: TabItemProps) {
   return (
     <List.Item
       key={tab.id}
-      icon={isBookmark ? BookmarkFilledIcon : BookmarkIcon}
+      icon={tab.url ? faviconOf(tab.url) : undefined}
       title={tab.title || 'Untitled'}
       keywords={tab.url != null ? [tab.url] : undefined}
       accessories={
-        <span className="text-cmdk-placeholder">
-          {group?.title ? group.title : tab.pinned ? 'Pinned' : ''}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-cmdk-section-title">
+            {group?.title ? group.title : tab.pinned ? 'Pinned' : ''}
+          </span>
+          <span className="text-foreground">
+            {isBookmark ? (
+              <BookmarkFilledIcon className="size-4" />
+            ) : (
+              <BookmarkIcon className="size-4" />
+            )}
+          </span>
+        </div>
       }
       actions={
         <ActionPanel>
@@ -125,4 +134,19 @@ export default function TabItem({ tab, group }: TabItemProps) {
       }
     />
   )
+}
+
+function faviconSrc(url: string) {
+  const _url = new URL(chrome.runtime.getURL('/_favicon/'))
+  _url.searchParams.set('pageUrl', url)
+  _url.searchParams.set('size', '32')
+  return _url.toString()
+}
+
+function faviconOf(url: string) {
+  const src = faviconSrc(url)
+  const BookmarkFavicon = (props: { className?: string }) => (
+    <img src={src} {...props} />
+  )
+  return BookmarkFavicon
 }
