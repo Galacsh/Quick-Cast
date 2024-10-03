@@ -67,6 +67,7 @@ function HistoryList() {
   return histories.map((history) => (
     <List.Item
       key={history.id}
+      icon={history.url ? faviconOf(history.url) : undefined}
       title={history.title || 'Untitled'}
       actions={
         <ActionPanel>
@@ -89,4 +90,19 @@ function HistoryList() {
       }
     />
   ))
+}
+
+function faviconSrc(url: string) {
+  const _url = new URL(chrome.runtime.getURL('/_favicon/'))
+  _url.searchParams.set('pageUrl', url)
+  _url.searchParams.set('size', '32')
+  return _url.toString()
+}
+
+function faviconOf(url: string) {
+  const src = faviconSrc(url)
+  const BookmarkFavicon = (props: { className?: string }) => (
+    <img src={src} {...props} />
+  )
+  return BookmarkFavicon
 }
