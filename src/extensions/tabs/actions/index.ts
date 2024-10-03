@@ -27,7 +27,15 @@ const toggleBookmark = payloadRequester<{ tabId: number }>(
         found.map((bookmark) => chrome.bookmarks.remove(bookmark.id))
       )
     } else {
-      await chrome.bookmarks.create({ title: tab.title, url: tab.url })
+      const roots = await chrome.bookmarks.getChildren('0')
+      const first = roots.find((r) => r.index === 0)
+      if (first == null) throw new Error('Cannot find bookmark tree.')
+
+      await chrome.bookmarks.create({
+        title: tab.title,
+        url: tab.url,
+        parentId: first.id,
+      })
     }
   }
 )
