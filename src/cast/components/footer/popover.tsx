@@ -1,6 +1,6 @@
 import { useCallback, useEffect, type ReactNode } from 'react'
 import * as Popover from '@radix-ui/react-popover'
-import { useMain, useSearch, usePanel } from '@/cast/contexts'
+import { useMain, usePanel } from '@/cast/contexts'
 import { isKeystroke } from '@/cast/utils'
 
 type FooterPopoverProps = {
@@ -12,9 +12,8 @@ export default function FooterPopover({
   trigger,
   children,
 }: FooterPopoverProps) {
-  const { focus: focusSearchBar } = useSearch()
   const { isPanelOpen, setPanelOpen } = usePanel()
-  const { enableScrolling, disableScrolling } = useMain()
+  const { ref: main, enableScrolling, disableScrolling } = useMain()
 
   /** Prevent escape key triggering "pop view" */
   const onEscapeKeyDown = useCallback(function (e: Event) {
@@ -24,11 +23,15 @@ export default function FooterPopover({
   /** Focus search bar on close */
   const onCloseAutoFocus = useCallback(
     function (e: Event) {
+      function focusInput() {
+        main.current?.querySelector('input')?.focus()
+      }
+
       e.stopImmediatePropagation()
       e.preventDefault()
-      focusSearchBar()
+      focusInput()
     },
-    [focusSearchBar]
+    [main]
   )
 
   // Toggle popover on `Ctrl(Meta) + K`

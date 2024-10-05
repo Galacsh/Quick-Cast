@@ -20,7 +20,7 @@ function List({
   className,
   children,
 }: ListProps) {
-  const { ref: searchRef, search, setSearch, clear } = useSearch()
+  const { search, setSearch, clear } = useSearch()
   const { pop, isRoot, setTitle } = useNavigation()
   const { actions } = useActions()
   const { isPanelOpen } = usePanel()
@@ -92,7 +92,6 @@ function List({
           </button>
         )}
         <CommandInput
-          ref={searchRef}
           autoFocus
           value={search}
           onValueChange={setSearch}
