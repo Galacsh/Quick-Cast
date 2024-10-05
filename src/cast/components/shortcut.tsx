@@ -61,6 +61,18 @@ function toKeys(keystroke: Keystroke) {
     case 'Enter':
       keys.push('↵')
       break
+    case 'ArrowUp':
+      keys.push('↑')
+      break
+    case 'ArrowLeft':
+      keys.push('←')
+      break
+    case 'ArrowRight':
+      keys.push('→')
+      break
+    case 'ArrowDown':
+      keys.push('↓')
+      break
     case 'Minus':
       keys.push('-')
       break

@@ -18,13 +18,14 @@ export const BOOKMARK = {
   OPEN_IN_GROUP: 'bookmark-open-in-group',
   DELETE: 'bookmark-delete',
   EDIT: 'bookmark-edit',
-  MOVE: 'bookmark-move',
+  MOVE_FOLDER: 'bookmark-move-folder',
   FOLDER_OPEN: 'bookmark-folder-open',
   FOLDER_OPEN_IN_GROUP: 'bookmark-folder-open-in-group',
   FOLDER_OPEN_AS_GROUP: 'bookmark-folder-open-as-group',
   FOLDER_DELETE: 'bookmark-folder-delete',
   FOLDER_EDIT: 'bookmark-folder-edit',
   OPEN_BOOKMARKS_PAGE: 'bookmark-open-bookmarks-page',
+  MOVE: 'bookmark-move',
 }
 
 export const HISTORY = {

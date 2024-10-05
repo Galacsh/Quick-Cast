@@ -13,7 +13,7 @@ export default function MoveToFolder({ bookmark }: Props) {
 
   const move = useCallback(
     async (bookmark: BookmarkNode, folder: BookmarkNode) => {
-      request.move({ bookmark, folder })
+      request.moveToFolder({ bookmark, folder })
       window.close()
     },
     []

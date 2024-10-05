@@ -126,6 +126,36 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
     [push]
   )
 
+  const moveUp = useCallback(async (bookmark: BookmarkNode) => {
+    let pos = (bookmark.index || 0) - 1
+    if (pos < 0) pos = 0
+    const edited = Object.assign({}, bookmark, { index: pos })
+    request.move({ bookmark: edited })
+  }, [])
+
+  const moveDown = useCallback(async (bookmark: BookmarkNode) => {
+    const pos = (bookmark.index || 0) + 2
+    const edited = Object.assign({}, bookmark, { index: pos })
+    request.move({ bookmark: edited })
+  }, [])
+
+  const moveTop = useCallback(async (bookmark: BookmarkNode) => {
+    const edited = Object.assign({}, bookmark, { index: 0 })
+    request.move({ bookmark: edited })
+  }, [])
+
+  const moveBottom = useCallback(async (bookmark: BookmarkNode) => {
+    const parentId = bookmark.parentId
+    if (parentId == null) throw new Error("Cannot find parent's id.")
+
+    // Get the maximum index from the existing siblings
+    const siblings = await chrome.bookmarks.getChildren(parentId)
+    const maxIndex = siblings.length - 1
+
+    const edited = Object.assign({}, bookmark, { index: maxIndex + 1 })
+    request.move({ bookmark: edited })
+  }, [])
+
   return (
     <List.Item
       icon={item.url ? faviconOf(item.url) : undefined}
@@ -145,11 +175,6 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
             shortcut={{ code: 'Enter', ctrlMeta: true }}
           />
           <Action
-            title="Move to folder"
-            onAction={() => moveToFolder(item)}
-            shortcut={{ code: 'KeyM', ctrlMeta: true }}
-          />
-          <Action
             title="Edit"
             onAction={() => edit(item)}
             shortcut={{ code: 'KeyE', ctrlMeta: true }}
@@ -158,6 +183,31 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
             title="Delete"
             onAction={() => deleteBookmark(item)}
             shortcut={{ code: 'KeyD', ctrlMeta: true }}
+          />
+          <Action
+            title="Move to folder"
+            onAction={() => moveToFolder(item)}
+            shortcut={{ code: 'KeyM', ctrlMeta: true }}
+          />
+          <Action
+            title="Move up"
+            onAction={() => moveUp(item)}
+            shortcut={{ code: 'ArrowUp', ctrlMeta: true, shift: true }}
+          />
+          <Action
+            title="Move down"
+            onAction={() => moveDown(item)}
+            shortcut={{ code: 'ArrowDown', ctrlMeta: true, shift: true }}
+          />
+          <Action
+            title="Move top"
+            onAction={() => moveTop(item)}
+            shortcut={{ code: 'ArrowLeft', ctrlMeta: true, shift: true }}
+          />
+          <Action
+            title="Move bottom"
+            onAction={() => moveBottom(item)}
+            shortcut={{ code: 'ArrowRight', ctrlMeta: true, shift: true }}
           />
         </ActionPanel>
       }

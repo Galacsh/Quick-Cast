@@ -6,6 +6,7 @@ import type {
   edit,
   editFolder,
   move,
+  moveToFolder,
   open,
   openBookmarksPage,
   openFolder,
@@ -154,10 +155,15 @@ const onOpenBookmarksPage: typeof openBookmarksPage = async () => {
   })
 }
 
-const onMove: typeof move = async ({ bookmark, folder }) => {
+const onMoveToFolder: typeof moveToFolder = async ({ bookmark, folder }) => {
   const { id } = bookmark
   const { id: parentId } = folder
   await chrome.bookmarks.move(id, { parentId })
+}
+
+const onMove: typeof move = async ({ bookmark }) => {
+  const { id, parentId, index } = bookmark
+  await chrome.bookmarks.move(id, { parentId, index })
 }
 
 export default {
@@ -166,6 +172,7 @@ export default {
   [BOOKMARK.DELETE]: onDelete,
   [BOOKMARK.EDIT]: onEdit,
   [BOOKMARK.MOVE]: onMove,
+  [BOOKMARK.MOVE_FOLDER]: onMoveToFolder,
   [BOOKMARK.FOLDER_OPEN]: onOpenFolder,
   [BOOKMARK.FOLDER_OPEN_IN_GROUP]: onOpenFolderInGroup,
   [BOOKMARK.FOLDER_OPEN_AS_GROUP]: onOpenFolderAsGroup,
