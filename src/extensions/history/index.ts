@@ -1,9 +1,9 @@
-import { GearIcon } from '@radix-ui/react-icons'
+import { ArchiveIcon } from '@radix-ui/react-icons'
 import commands from './commands'
 import type { Extension } from '@/cast/types'
 
 export const extension: Extension = {
-  name: 'Quick Cast',
-  icon: GearIcon,
+  name: 'History',
+  icon: ArchiveIcon,
   commands,
 }

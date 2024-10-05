@@ -1,5 +1,5 @@
 import { name, version } from '@/../package.json'
-import { handlers } from '@/extensions/handlers'
+import handlers from '@/extensions/actions/handlers'
 import type { MessageSender, Message, Handler, SendResponse } from '@/types'
 
 function openOptionsPage() {

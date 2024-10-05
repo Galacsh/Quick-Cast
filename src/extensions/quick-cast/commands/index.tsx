@@ -1,5 +1,5 @@
 import { GearIcon } from '@radix-ui/react-icons'
-import { requesters } from '../actions'
+import { quickCast as request } from '@/extensions/actions'
 import type { Command } from '@/cast/types'
 
 export default [
@@ -7,12 +7,12 @@ export default [
     icon: GearIcon,
     name: 'Reload Quick Cast',
     mode: 'no-view',
-    action: requesters.reloadQuickCast,
+    action: request.reload,
   },
   {
     icon: GearIcon,
     name: 'Open Options Page',
     mode: 'no-view',
-    action: requesters.openQuickCastOptionsPage,
+    action: request.openOptionsPage,
   },
 ] satisfies Command[]
