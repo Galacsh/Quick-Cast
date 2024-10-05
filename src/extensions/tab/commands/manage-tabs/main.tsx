@@ -24,10 +24,12 @@ export default function Command() {
     chrome.tabs.onRemoved.addListener(loadTabs)
     chrome.tabs.onCreated.addListener(loadTabs)
     chrome.tabs.onUpdated.addListener(loadTabs)
+    chrome.tabs.onMoved.addListener(loadTabs)
     return () => {
       chrome.tabs.onRemoved.removeListener(loadTabs)
       chrome.tabs.onCreated.removeListener(loadTabs)
       chrome.tabs.onUpdated.removeListener(loadTabs)
+      chrome.tabs.onMoved.removeListener(loadTabs)
     }
   }, [loadTabs])
 

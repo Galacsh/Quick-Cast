@@ -6,6 +6,7 @@ import type {
   createGroup,
   editGroupName,
   excludeTabs,
+  move,
   moveToGroup,
   removeFromGroup,
   switchTo,
@@ -78,6 +79,12 @@ const onMoveToGroup: typeof moveToGroup = async ({ tab, tabGroup }) => {
   await chrome.tabs.group({ groupId, tabIds: tabId })
 }
 
+const onMove: typeof move = async ({ tab }) => {
+  const { id, index } = tab
+  if (id == null) throw new Error('Cannot find tab id.')
+  await chrome.tabs.move(id, { index })
+}
+
 const onToggleCollapseGroup: typeof toggleCollapseGroup = async ({
   tabGroup,
 }) => {
@@ -115,6 +122,7 @@ export default {
   [TAB.CREATE]: onCreate,
   [TAB.REMOVE_FROM_GROUP]: onRemoveFromGroup,
   [TAB.MOVE_TO_GROUP]: onMoveToGroup,
+  [TAB.MOVE]: onMove,
   [TAB.TOGGLE_COLLAPSE_GROUP]: onToggleCollapseGroup,
   [TAB.CLOSE_GROUP]: onCloseGroup,
   [TAB.CREATE_GROUP]: onCreateGroup,

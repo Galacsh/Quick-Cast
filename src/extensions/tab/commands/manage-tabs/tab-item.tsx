@@ -73,6 +73,28 @@ export default function TabItem({ tab, group }: TabItemProps) {
     [push]
   )
 
+  const moveUp = useCallback(async (tab: Tab) => {
+    let pos = tab.index - 1
+    if (pos < 0) pos = 0
+    const edited = Object.assign({}, tab, { index: pos })
+    await request.move({ tab: edited })
+  }, [])
+
+  const moveDown = useCallback(async (tab: Tab) => {
+    const edited = Object.assign({}, tab, { index: tab.index + 1 })
+    await request.move({ tab: edited })
+  }, [])
+
+  const moveTop = useCallback(async (tab: Tab) => {
+    const edited = Object.assign({}, tab, { index: 0 })
+    await request.move({ tab: edited })
+  }, [])
+
+  const moveBottom = useCallback(async (tab: Tab) => {
+    const edited = Object.assign({}, tab, { index: -1 })
+    await request.move({ tab: edited })
+  }, [])
+
   return (
     <List.Item
       key={tab.id}
@@ -115,6 +137,26 @@ export default function TabItem({ tab, group }: TabItemProps) {
             title="Move to group"
             onAction={() => moveToGroup(tab)}
             shortcut={{ code: 'KeyG', ctrlMeta: true }}
+          />
+          <Action
+            title="Move up"
+            onAction={() => moveUp(tab)}
+            shortcut={{ code: 'ArrowUp', ctrlMeta: true, shift: true }}
+          />
+          <Action
+            title="Move down"
+            onAction={() => moveDown(tab)}
+            shortcut={{ code: 'ArrowDown', ctrlMeta: true, shift: true }}
+          />
+          <Action
+            title="Move top"
+            onAction={() => moveTop(tab)}
+            shortcut={{ code: 'ArrowLeft', ctrlMeta: true, shift: true }}
+          />
+          <Action
+            title="Move bottom"
+            onAction={() => moveBottom(tab)}
+            shortcut={{ code: 'ArrowRight', ctrlMeta: true, shift: true }}
           />
           {group && (
             <Action

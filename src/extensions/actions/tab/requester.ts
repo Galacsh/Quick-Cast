@@ -22,6 +22,8 @@ export const moveToGroup = payloadRequester<{ tab: Tab; tabGroup: TabGroup }>(
   TAB.MOVE_TO_GROUP
 )
 
+export const move = payloadRequester<{ tab: Tab }>(TAB.MOVE)
+
 // =====================================================================
 
 export const toggleCollapseGroup = payloadRequester<{ tabGroup: TabGroup }>(

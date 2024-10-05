@@ -6,6 +6,7 @@ export const TAB = {
   CREATE: 'tab-create',
   REMOVE_FROM_GROUP: 'tab-remove-from-group',
   MOVE_TO_GROUP: 'tab-move-to-group',
+  MOVE: 'tab-move',
   TOGGLE_COLLAPSE_GROUP: 'tab-group-toggle-collapse',
   CLOSE_GROUP: 'tab-group-close',
   CREATE_GROUP: 'tab-group-create',
