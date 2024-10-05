@@ -133,7 +133,6 @@ type FormMultiSelectItemElement = ReactElement<FormMultiSelectItemProps>
 
 export type Extension = {
   name: string
-  icon: ComponentType<{ className?: string }>
   commands: Command[]
 }
 
