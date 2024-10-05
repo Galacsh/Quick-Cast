@@ -9,12 +9,15 @@ export function toActions(panel: ActionPanelElement): ActionEssentials[] {
   const panelChildren = panel.props.children
   if (!panelChildren) return []
 
-  if (Array.isArray(panelChildren)) {
+  if (panelChildren == null) {
+    return []
+  } else if (Array.isArray(panelChildren)) {
     const children = panelChildren as Iterable<
-      ActionElement | ActionPanelSectionElement
+      ActionElement | ActionPanelSectionElement | undefined
     >
     const actions = []
     for (const child of children) {
+      if (child == null) continue
       actions.push(...fromElement(child))
     }
     return actions
@@ -30,11 +33,12 @@ function fromActionElement(elem: ActionElement): ActionEssentials {
 }
 
 function fromActionElements(
-  iterable: Iterable<ActionElement>
+  iterable: Iterable<ActionElement | undefined>
 ): ActionEssentials[] {
   const actions = []
 
   for (const elem of iterable) {
+    if (elem == null) continue
     actions.push(fromActionElement(elem))
   }
 
@@ -45,10 +49,10 @@ function fromSectionElement(
   sectionElem: ActionPanelSectionElement
 ): ActionEssentials[] {
   const children = sectionElem.props.children
-  if (children == null) return []
-
-  if (Array.isArray(children)) {
-    const iterable = children as Iterable<ActionElement>
+  if (children == null) {
+    return []
+  } else if (Array.isArray(children)) {
+    const iterable = children as Iterable<ActionElement | undefined>
     return fromActionElements(iterable)
   } else {
     const action = children as ActionElement

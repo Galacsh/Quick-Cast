@@ -28,7 +28,7 @@ export type ActionProps = ActionEssentials & {
 export type ActionPanelSectionProps = {
   title: string
   className?: string
-  children?: ActionElement | Iterable<ActionElement>
+  children?: ActionElement | Iterable<ActionElement | undefined>
 }
 
 export type ActionPanelProps = {
@@ -115,7 +115,7 @@ export type ActionElement = ReactElement<ActionProps>
 export type ActionPanelChildren =
   | ActionElement
   | ActionPanelSectionElement
-  | Iterable<ActionElement | ActionPanelSectionElement>
+  | Iterable<ActionElement | ActionPanelSectionElement | undefined>
 
 type ListElement = ReactElement<ListProps>
 

@@ -116,11 +116,13 @@ export default function TabItem({ tab, group }: TabItemProps) {
             onAction={() => moveToGroup(tab)}
             shortcut={{ code: 'KeyG', ctrlMeta: true }}
           />
-          <Action
-            title="Remove from group"
-            onAction={() => removeFromGroup(tab)}
-            shortcut={{ code: 'KeyU', ctrlMeta: true }}
-          />
+          {group && (
+            <Action
+              title="Remove from group"
+              onAction={() => removeFromGroup(tab)}
+              shortcut={{ code: 'KeyU', ctrlMeta: true }}
+            />
+          )}
           <Action
             title="Close tab"
             onAction={() => closeTab(tab)}
