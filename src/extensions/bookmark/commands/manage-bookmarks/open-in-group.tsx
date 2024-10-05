@@ -30,7 +30,7 @@ export default function OpenInGroup({ bookmark }: Props) {
 
   return (
     <List
-      navigationTitle={`Open "${bookmark.title || 'Untitled'}" in group`}
+      navigationTitle={`Open "${bookmark.title}" in group`}
       searchBarPlaceholder="Search for a tab group...">
       {groups.map((group, idx) => (
         <List.Item

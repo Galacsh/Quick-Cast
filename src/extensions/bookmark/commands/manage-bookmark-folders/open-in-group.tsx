@@ -30,7 +30,7 @@ export default function OpenInGroup({ folder }: Props) {
 
   return (
     <List
-      navigationTitle={`Open "${folder.title || 'Untitled'}" in group`}
+      navigationTitle={`Open "${folder.title}" in group`}
       searchBarPlaceholder="Search for a tab group...">
       {groups.map((group, idx) => (
         <List.Item
