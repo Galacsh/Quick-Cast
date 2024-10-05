@@ -7,12 +7,13 @@ import OpenInGroup from './open-in-group'
 import OpenAsGroup from './open-as-group'
 import EditFolderName from './edit-folder-name'
 import type { BookmarkNode } from '@/types'
+import MoveToFolder from './move-to-folder'
 
 export default function Command() {
   return (
     <List
-      navigationTitle="Manage Bookmarks"
-      searchBarPlaceholder="Search for a bookmark...">
+      navigationTitle="Manage Bookmark Folders"
+      searchBarPlaceholder="Search for a bookmark folder...">
       <BookmarkFolderList />
     </List>
   )
@@ -132,6 +133,13 @@ function Folder({ folder, folderNames }: FolderProps) {
     [push]
   )
 
+  const moveToFolder = useCallback(
+    (folder: BookmarkNode) => {
+      push(<MoveToFolder folder={folder} />)
+    },
+    [push]
+  )
+
   const removeFolder = useCallback(async (folder: BookmarkNode) => {
     await request.deleteFolder({ folder })
   }, [])
@@ -169,6 +177,11 @@ function Folder({ folder, folderNames }: FolderProps) {
             title="Open as group"
             onAction={() => openAsGroup(folder)}
             shortcut={{ code: 'KeyG', ctrlMeta: true }}
+          />
+          <Action
+            title="Move to folder"
+            onAction={() => moveToFolder(folder)}
+            shortcut={{ code: 'KeyM', ctrlMeta: true }}
           />
           <Action
             title="Edit folder name"

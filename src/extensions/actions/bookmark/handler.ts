@@ -155,8 +155,8 @@ const onOpenBookmarksPage: typeof openBookmarksPage = async () => {
   })
 }
 
-const onMoveToFolder: typeof moveToFolder = async ({ bookmark, folder }) => {
-  const { id } = bookmark
+const onMoveToFolder: typeof moveToFolder = async ({ node, folder }) => {
+  const { id } = node
   const { id: parentId } = folder
   await chrome.bookmarks.move(id, { parentId })
 }

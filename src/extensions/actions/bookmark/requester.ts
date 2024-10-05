@@ -39,7 +39,7 @@ export const editFolder = payloadRequester<{
 }>(BOOKMARK.FOLDER_EDIT)
 
 export const moveToFolder = payloadRequester<{
-  bookmark: BookmarkNode
+  node: BookmarkNode
   folder: BookmarkNode
 }>(BOOKMARK.MOVE_FOLDER)
 

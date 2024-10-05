@@ -5,19 +5,17 @@ import { Action, ActionPanel, List } from '@/cast/api'
 import type { BookmarkNode } from '@/types'
 
 type Props = {
-  bookmark: BookmarkNode
+  folder: BookmarkNode
 }
 
-export default function MoveToFolder({ bookmark }: Props) {
+export default function MoveToFolder({ folder }: Props) {
   const [roots, setRoots] = useState<BookmarkNode[]>([])
 
-  const move = useCallback(
-    async (bookmark: BookmarkNode, folder: BookmarkNode) => {
-      request.moveToFolder({ node: bookmark, folder })
-      window.close()
-    },
-    []
-  )
+  const move = useCallback(async (node: BookmarkNode, folder: BookmarkNode) => {
+    if (node.id === folder.id || node.parentId === folder.id) return
+    request.moveToFolder({ node, folder })
+    window.close()
+  }, [])
 
   const loadBookmarks = useCallback(async () => {
     const tree = await chrome.bookmarks.getTree()
@@ -45,13 +43,13 @@ export default function MoveToFolder({ bookmark }: Props) {
 
   return (
     <List
-      navigationTitle={`Move "${bookmark.title}" to folder`}
-      searchBarPlaceholder="Search for a bookmark...">
+      navigationTitle={`Move "${folder.title}" to folder`}
+      searchBarPlaceholder="Search for a folder...">
       {roots.map((root) => (
         <BookmarkRoot
           key={root.id}
           root={root}
-          onSelect={(folder) => move(bookmark, folder)}
+          onSelect={(to) => move(folder, to)}
         />
       ))}
     </List>
