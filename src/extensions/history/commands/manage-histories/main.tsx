@@ -69,6 +69,13 @@ function HistoryList() {
       key={history.id}
       icon={history.url ? faviconOf(history.url) : undefined}
       title={history.title || 'Untitled'}
+      accessories={
+        history.url ? (
+          <span className="text-cmdk-section-title">
+            {rootDomainOf(history.url)}
+          </span>
+        ) : undefined
+      }
       actions={
         <ActionPanel>
           <Action
@@ -105,4 +112,16 @@ function faviconOf(url: string) {
     <img src={src} {...props} />
   )
   return BookmarkFavicon
+}
+
+function rootDomainOf(url: string) {
+  const _url = new URL(url)
+  const domainParts = _url.hostname.split('.')
+  // If the domain has more than 2 parts, assume the last two are the main domain
+  // Example: 'www.example.co.uk' -> 'example.co.uk'
+  if (domainParts.length > 2) {
+    return domainParts.slice(-2).join('.')
+  }
+  // If the domain has only 2 parts or fewer, return it as is
+  return _url.hostname
 }

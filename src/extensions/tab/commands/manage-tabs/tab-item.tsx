@@ -78,6 +78,7 @@ export default function TabItem({ tab, group }: TabItemProps) {
       key={tab.id}
       icon={tab.url ? faviconOf(tab.url) : undefined}
       title={tab.title || 'Untitled'}
+      subtitle={tab.url ? rootDomainOf(tab.url) : undefined}
       keywords={tab.url != null ? [tab.url] : undefined}
       accessories={
         <div className="flex items-center gap-2">
@@ -149,4 +150,16 @@ function faviconOf(url: string) {
     <img src={src} {...props} />
   )
   return BookmarkFavicon
+}
+
+function rootDomainOf(url: string) {
+  const _url = new URL(url)
+  const domainParts = _url.hostname.split('.')
+  // If the domain has more than 2 parts, assume the last two are the main domain
+  // Example: 'www.example.co.uk' -> 'example.co.uk'
+  if (domainParts.length > 2) {
+    return domainParts.slice(-2).join('.')
+  }
+  // If the domain has only 2 parts or fewer, return it as is
+  return _url.hostname
 }
