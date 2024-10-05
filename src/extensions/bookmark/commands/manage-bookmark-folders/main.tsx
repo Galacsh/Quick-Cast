@@ -1,5 +1,5 @@
 import { Fragment, useCallback, useEffect, useState } from 'react'
-import { Folder as FolderIcon } from 'lucide-react'
+import { FolderHeart as FolderIcon } from 'lucide-react'
 import { useNavigation } from '@/cast/contexts'
 import { bookmark as request } from '@/extensions/actions'
 import { Action, ActionPanel, List } from '@/cast/api'
