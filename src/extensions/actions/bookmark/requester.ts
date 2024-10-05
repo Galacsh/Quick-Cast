@@ -38,6 +38,10 @@ export const deleteFolder = payloadRequester<{ folder: BookmarkNode }>(
   BOOKMARK.FOLDER_DELETE
 )
 
+export const createFolder = payloadRequester<{ title: string }>(
+  BOOKMARK.FOLDER_CREATE
+)
+
 export const editFolder = payloadRequester<{
   folder: BookmarkNode
 }>(BOOKMARK.FOLDER_EDIT)
