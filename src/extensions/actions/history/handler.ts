@@ -1,5 +1,5 @@
 import { HISTORY } from '@/extensions/actions/id'
-import { deleteHistory, open, openInGroup } from './requester'
+import { deleteHistory, open, openHistoryPage, openInGroup } from './requester'
 
 const onOpen: typeof open = async ({ history }) => {
   const { url } = history
@@ -27,8 +27,16 @@ const onDelete: typeof deleteHistory = async ({ history }) => {
   await chrome.history.deleteUrl({ url })
 }
 
+const onOpenHistoryPage: typeof openHistoryPage = async () => {
+  await chrome.tabs.create({
+    url: 'chrome://history',
+    active: true,
+  })
+}
+
 export default {
   [HISTORY.OPEN]: onOpen,
   [HISTORY.OPEN_IN_GROUP]: onOpenInGroup,
   [HISTORY.DELETE]: onDelete,
+  [HISTORY.OPEN_HISTORY_PAGE]: onOpenHistoryPage,
 }

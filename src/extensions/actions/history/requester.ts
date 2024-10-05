@@ -1,5 +1,5 @@
 import { HISTORY } from '@/extensions/actions/id'
-import { payloadRequester } from '@/extensions/actions/helper'
+import { payloadRequester, requester } from '@/extensions/actions/helper'
 import type { History, TabGroup } from '@/types'
 
 export const open = payloadRequester<{ history: History }>(HISTORY.OPEN)
@@ -13,3 +13,5 @@ export const openInGroup = payloadRequester<{
   history: History
   tabGroup: TabGroup
 }>(HISTORY.OPEN_IN_GROUP)
+
+export const openHistoryPage = requester(HISTORY.OPEN_HISTORY_PAGE)

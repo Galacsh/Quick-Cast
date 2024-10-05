@@ -29,6 +29,7 @@ export const HISTORY = {
   OPEN: 'history-open',
   OPEN_IN_GROUP: 'history-open-in-group',
   DELETE: 'history-delete',
+  OPEN_HISTORY_PAGE: 'history-open-history-page',
 }
 
 export const QUICK_CAST = {
