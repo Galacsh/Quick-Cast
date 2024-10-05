@@ -143,13 +143,13 @@ function Folder({ folder, folderNames }: FolderProps) {
     [push]
   )
 
-  const names = folderNames ? [...folderNames, folder.title] : [folder.title]
   const itemsCount = folder.children?.length || 0
 
   return (
     <List.Item
       icon={FolderIcon}
-      title={names.join(' > ')}
+      title={folder.title}
+      subtitle={folderNames?.join(' > ')}
       accessories={
         <span className="text-cmdk-section-title">{itemsCount} items</span>
       }
