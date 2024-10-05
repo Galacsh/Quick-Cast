@@ -23,6 +23,7 @@ export const BOOKMARK = {
   FOLDER_OPEN_AS_GROUP: 'bookmark-folder-open-as-group',
   FOLDER_DELETE: 'bookmark-folder-delete',
   FOLDER_EDIT: 'bookmark-folder-edit',
+  OPEN_BOOKMARKS_PAGE: 'bookmark-open-bookmarks-page',
 }
 
 export const HISTORY = {

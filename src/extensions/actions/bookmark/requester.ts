@@ -1,5 +1,5 @@
 import { BOOKMARK } from '@/extensions/actions/id'
-import { payloadRequester } from '@/extensions/actions/helper'
+import { payloadRequester, requester } from '@/extensions/actions/helper'
 import type { BookmarkNode, TabGroup } from '@/types'
 
 export const open = payloadRequester<{ bookmark: BookmarkNode }>(BOOKMARK.OPEN)
@@ -37,3 +37,5 @@ export const deleteFolder = payloadRequester<{ folder: BookmarkNode }>(
 export const editFolder = payloadRequester<{
   folder: BookmarkNode
 }>(BOOKMARK.FOLDER_EDIT)
+
+export const openBookmarksPage = requester(BOOKMARK.OPEN_BOOKMARKS_PAGE)

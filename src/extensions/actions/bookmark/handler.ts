@@ -6,6 +6,7 @@ import type {
   edit,
   editFolder,
   open,
+  openBookmarksPage,
   openFolder,
   openFolderAsGroup,
   openFolderInGroup,
@@ -145,6 +146,13 @@ const onEditFolder: typeof editFolder = async ({ folder }) => {
   await chrome.bookmarks.update(id, { title })
 }
 
+const onOpenBookmarksPage: typeof openBookmarksPage = async () => {
+  await chrome.tabs.create({
+    url: 'chrome://bookmarks',
+    active: true,
+  })
+}
+
 export default {
   [BOOKMARK.OPEN]: onOpen,
   [BOOKMARK.OPEN_IN_GROUP]: onOpenInGroup,
@@ -155,4 +163,5 @@ export default {
   [BOOKMARK.FOLDER_OPEN_AS_GROUP]: onOpenFolderAsGroup,
   [BOOKMARK.FOLDER_DELETE]: onDeleteFolder,
   [BOOKMARK.FOLDER_EDIT]: onEditFolder,
+  [BOOKMARK.OPEN_BOOKMARKS_PAGE]: onOpenBookmarksPage,
 }
