@@ -4,6 +4,7 @@ import { useNavigation } from '@/cast/contexts'
 import { bookmark as request } from '@/extensions/actions'
 import OpenInGroup from './open-in-group'
 import type { BookmarkNode } from '@/types'
+import MoveToFolder from './move-to-folder'
 
 export default function Command() {
   return (
@@ -100,7 +101,7 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
   }, [])
 
   const openInGroup = useCallback(
-    async (bookmark: BookmarkNode) => {
+    (bookmark: BookmarkNode) => {
       push(<OpenInGroup bookmark={bookmark} />)
     },
     [push]
@@ -109,6 +110,13 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
   const deleteBookmark = useCallback(async (bookmark: BookmarkNode) => {
     await request.deleteBookmark({ bookmark })
   }, [])
+
+  const moveToFolder = useCallback(
+    (bookmark: BookmarkNode) => {
+      push(<MoveToFolder bookmark={bookmark} />)
+    },
+    [push]
+  )
 
   return (
     <List.Item
@@ -127,6 +135,11 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
             title="Open in group"
             onAction={() => openInGroup(item)}
             shortcut={{ code: 'Enter', ctrlMeta: true }}
+          />
+          <Action
+            title="Move to folder"
+            onAction={() => moveToFolder(item)}
+            shortcut={{ code: 'KeyM', ctrlMeta: true }}
           />
           <Action
             title="Delete"

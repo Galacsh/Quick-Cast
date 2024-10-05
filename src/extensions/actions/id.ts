@@ -18,6 +18,7 @@ export const BOOKMARK = {
   OPEN_IN_GROUP: 'bookmark-open-in-group',
   DELETE: 'bookmark-delete',
   EDIT: 'bookmark-edit',
+  MOVE: 'bookmark-move',
   FOLDER_OPEN: 'bookmark-folder-open',
   FOLDER_OPEN_IN_GROUP: 'bookmark-folder-open-in-group',
   FOLDER_OPEN_AS_GROUP: 'bookmark-folder-open-as-group',
