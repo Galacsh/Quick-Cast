@@ -1,5 +1,6 @@
-import { Action, ActionPanel, List } from '@/cast/api'
 import { useCallback, useEffect, useState } from 'react'
+import { FileStack, FoldVertical } from 'lucide-react'
+import { Action, ActionPanel, List } from '@/cast/api'
 import { bookmark as request } from '@/extensions/actions'
 import type { BookmarkNode, TabGroup } from '@/types'
 
@@ -34,6 +35,7 @@ export default function OpenInGroup({ bookmark }: Props) {
       {groups.map((group, idx) => (
         <List.Item
           key={`group-${idx}`}
+          icon={group.collapsed ? FoldVertical : FileStack}
           title={group.title || 'Untitled'}
           actions={
             <ActionPanel>

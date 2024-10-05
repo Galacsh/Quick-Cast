@@ -2,6 +2,7 @@ import { Action, ActionPanel, List } from '@/cast/api'
 import { useCallback, useEffect, useState } from 'react'
 import { tab as request } from '@/extensions/actions'
 import type { Tab, TabGroup } from '@/types'
+import { FileStack, FoldVertical } from 'lucide-react'
 
 type Props = {
   tab: Tab
@@ -34,6 +35,7 @@ export default function MoveToGroup({ tab }: Props) {
       {groups.map((group, idx) => (
         <List.Item
           key={`group-${idx}`}
+          icon={group.collapsed ? FoldVertical : FileStack}
           title={group.title || 'Untitled'}
           actions={
             <ActionPanel>
