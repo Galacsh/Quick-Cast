@@ -5,6 +5,7 @@ import { bookmark as request } from '@/extensions/actions'
 import OpenInGroup from './open-in-group'
 import type { BookmarkNode } from '@/types'
 import MoveToFolder from './move-to-folder'
+import EditForm from './edit-form'
 
 export default function Command() {
   return (
@@ -107,6 +108,13 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
     [push]
   )
 
+  const edit = useCallback(
+    (bookmark: BookmarkNode) => {
+      push(<EditForm bookmark={bookmark} />)
+    },
+    [push]
+  )
+
   const deleteBookmark = useCallback(async (bookmark: BookmarkNode) => {
     await request.deleteBookmark({ bookmark })
   }, [])
@@ -140,6 +148,11 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
             title="Move to folder"
             onAction={() => moveToFolder(item)}
             shortcut={{ code: 'KeyM', ctrlMeta: true }}
+          />
+          <Action
+            title="Edit"
+            onAction={() => edit(item)}
+            shortcut={{ code: 'KeyE', ctrlMeta: true }}
           />
           <Action
             title="Delete"
