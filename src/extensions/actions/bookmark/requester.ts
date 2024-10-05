@@ -9,6 +9,10 @@ export const openInGroup = payloadRequester<{
   tabGroup: TabGroup
 }>(BOOKMARK.OPEN_IN_GROUP)
 
+export const create = payloadRequester<{ title: string; url: string }>(
+  BOOKMARK.CREATE
+)
+
 /** > 'delete' is not allowed as a variable declaration name. */
 export const deleteBookmark = payloadRequester<{ bookmark: BookmarkNode }>(
   BOOKMARK.DELETE

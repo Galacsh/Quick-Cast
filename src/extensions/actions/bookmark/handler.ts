@@ -1,6 +1,7 @@
 import { BOOKMARK } from '@/extensions/actions/id'
 import { getBookmarks } from './utils'
 import type {
+  create,
   deleteBookmark,
   deleteFolder,
   edit,
@@ -32,6 +33,16 @@ const onOpenInGroup: typeof openInGroup = async ({ bookmark, tabGroup }) => {
 
   await chrome.tabs.group({ groupId, tabIds: tab.id })
   await chrome.tabs.update(tab.id, { active: true, muted: false })
+}
+
+const onCreate: typeof create = async ({ title, url }) => {
+  const roots = await chrome.bookmarks.getChildren('0')
+
+  const first = roots.find(({ index }) => index === 0)
+  if (first == null) throw new Error('Cannot find bookmark tree.')
+  const { id: parentId } = first
+
+  await chrome.bookmarks.create({ title, url, parentId })
 }
 
 const onDelete: typeof deleteBookmark = async ({ bookmark }) => {
@@ -169,6 +180,7 @@ const onMove: typeof move = async ({ bookmark }) => {
 export default {
   [BOOKMARK.OPEN]: onOpen,
   [BOOKMARK.OPEN_IN_GROUP]: onOpenInGroup,
+  [BOOKMARK.CREATE]: onCreate,
   [BOOKMARK.DELETE]: onDelete,
   [BOOKMARK.EDIT]: onEdit,
   [BOOKMARK.MOVE]: onMove,

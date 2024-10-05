@@ -3,9 +3,10 @@ import { Action, ActionPanel, List } from '@/cast/api'
 import { useNavigation } from '@/cast/contexts'
 import { bookmark as request } from '@/extensions/actions'
 import OpenInGroup from './open-in-group'
-import type { BookmarkNode } from '@/types'
-import MoveToFolder from './move-to-folder'
+import CreateForm from './create-form'
 import EditForm from './edit-form'
+import MoveToFolder from './move-to-folder'
+import type { BookmarkNode } from '@/types'
 
 export default function Command() {
   return (
@@ -108,6 +109,10 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
     [push]
   )
 
+  const create = useCallback(() => {
+    push(<CreateForm />)
+  }, [push])
+
   const edit = useCallback(
     (bookmark: BookmarkNode) => {
       push(<EditForm bookmark={bookmark} />)
@@ -135,7 +140,17 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
 
   const moveDown = useCallback(async (bookmark: BookmarkNode) => {
     const pos = (bookmark.index || 0) + 2
-    const edited = Object.assign({}, bookmark, { index: pos })
+
+    const parentId = bookmark.parentId
+    if (parentId == null) throw new Error("Cannot find parent's id.")
+
+    // Get the maximum index from the existing siblings
+    const siblings = await chrome.bookmarks.getChildren(parentId)
+    const end = siblings.length
+
+    const edited = Object.assign({}, bookmark, {
+      index: Math.min(end, pos),
+    })
     request.move({ bookmark: edited })
   }, [])
 
@@ -150,9 +165,9 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
 
     // Get the maximum index from the existing siblings
     const siblings = await chrome.bookmarks.getChildren(parentId)
-    const maxIndex = siblings.length - 1
+    const end = siblings.length
 
-    const edited = Object.assign({}, bookmark, { index: maxIndex + 1 })
+    const edited = Object.assign({}, bookmark, { index: end })
     request.move({ bookmark: edited })
   }, [])
 
@@ -173,6 +188,11 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
             title="Open in group"
             onAction={() => openInGroup(item)}
             shortcut={{ code: 'Enter', ctrlMeta: true }}
+          />
+          <Action
+            title="Create"
+            onAction={() => create()}
+            shortcut={{ code: 'KeyB', ctrlMeta: true }}
           />
           <Action
             title="Edit"

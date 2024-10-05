@@ -17,6 +17,7 @@ export const TAB = {
 export const BOOKMARK = {
   OPEN: 'bookmark-open',
   OPEN_IN_GROUP: 'bookmark-open-in-group',
+  CREATE: 'bookmark-create',
   DELETE: 'bookmark-delete',
   EDIT: 'bookmark-edit',
   MOVE_FOLDER: 'bookmark-move-folder',
