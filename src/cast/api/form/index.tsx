@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { ArrowLeftIcon } from '@radix-ui/react-icons'
+import { ArrowLeft } from 'lucide-react'
 import { useActions, useNavigation, usePanel } from '@/cast/contexts'
 import TextField from './text-field'
 import MultiSelect from './multi-select'
@@ -69,7 +69,7 @@ function Form({
               'bg-cmdk-background-kbd hover:bg-cmdk-background-kbd-accent',
               'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring'
             )}>
-            <ArrowLeftIcon className="size-4" />
+            <ArrowLeft className="size-4" />
           </button>
         )}
         <span className="text-sm font-bold">{navigationTitle}</span>

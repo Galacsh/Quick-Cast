@@ -1,12 +1,12 @@
 import { Fragment, useCallback, useEffect, useState } from 'react'
-import { Action, ActionPanel, List } from '@/cast/api'
+import { Folder as FolderIcon } from 'lucide-react'
 import { useNavigation } from '@/cast/contexts'
 import { bookmark as request } from '@/extensions/actions'
+import { Action, ActionPanel, List } from '@/cast/api'
 import OpenInGroup from './open-in-group'
 import OpenAsGroup from './open-as-group'
-import type { BookmarkNode } from '@/types'
-import { BackpackIcon } from '@radix-ui/react-icons'
 import EditFolderName from './edit-folder-name'
+import type { BookmarkNode } from '@/types'
 
 export default function Command() {
   return (
@@ -148,7 +148,7 @@ function Folder({ folder, folderNames }: FolderProps) {
 
   return (
     <List.Item
-      icon={BackpackIcon}
+      icon={FolderIcon}
       title={names.join(' > ')}
       accessories={
         <span className="text-cmdk-section-title">{itemsCount} items</span>

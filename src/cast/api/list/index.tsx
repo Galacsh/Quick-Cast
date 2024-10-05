@@ -4,14 +4,14 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
 import { Command, CommandEmpty, CommandInput, CommandList } from 'cmdk'
+import { ArrowLeft } from 'lucide-react'
 import Item from './item'
 import Section from './section'
 import EmptyWatcher from './empty-watcher'
 import { useSearch, useNavigation, usePanel, useActions } from '@/cast/contexts'
 import { cn } from '@/lib/utils'
-import type { ListProps } from '@/cast/types'
 import { isKeystroke } from '@/cast/utils'
-import { ArrowLeftIcon } from '@radix-ui/react-icons'
+import type { ListProps } from '@/cast/types'
 
 function List({
   navigationTitle,
@@ -88,7 +88,7 @@ function List({
               'bg-cmdk-background-kbd hover:bg-cmdk-background-kbd-accent',
               'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring'
             )}>
-            <ArrowLeftIcon className="size-4" />
+            <ArrowLeft className="size-4" />
           </button>
         )}
         <CommandInput

@@ -1,9 +1,9 @@
-import { ArchiveIcon } from '@radix-ui/react-icons'
+import { History } from 'lucide-react'
 import Main from './main'
 import type { Command } from '@/cast/types'
 
 export default {
-  icon: ArchiveIcon,
+  icon: History,
   name: 'Manage Histories',
   mode: 'view',
   view: <Main />,

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { BookmarkIcon, BookmarkFilledIcon } from '@radix-ui/react-icons'
+import { Bookmark as BookmarkIcon } from 'lucide-react'
 import { Action, ActionPanel, List } from '@/cast/api'
 import { tab as request } from '@/extensions/actions'
 import type { BookmarkNode, BookmarkRemoveInfo, Tab, TabGroup } from '@/types'
@@ -84,9 +84,9 @@ export default function TabItem({ tab, group }: TabItemProps) {
           <span className="text-cmdk-section-title">
             {group?.title ? group.title : tab.pinned ? 'Pinned' : ''}
           </span>
-          <span className="text-foreground">
+          <span className="text-cmdk-section-title">
             {isBookmark ? (
-              <BookmarkFilledIcon className="size-4" />
+              <BookmarkIcon className="size-4 fill-cmdk-section-title" />
             ) : (
               <BookmarkIcon className="size-4" />
             )}

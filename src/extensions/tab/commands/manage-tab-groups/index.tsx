@@ -1,9 +1,9 @@
-import { CardStackIcon } from '@radix-ui/react-icons'
+import { FileStack } from 'lucide-react'
 import Main from './main'
 import type { Command } from '@/cast/types'
 
 export default {
-  icon: CardStackIcon,
+  icon: FileStack,
   name: 'Manage Tab Groups',
   mode: 'view',
   view: <Main />,

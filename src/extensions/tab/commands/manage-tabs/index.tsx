@@ -1,9 +1,9 @@
-import { ReaderIcon } from '@radix-ui/react-icons'
+import { FileText } from 'lucide-react'
 import Main from './main'
 import type { Command } from '@/cast/types'
 
 export default {
-  icon: ReaderIcon,
+  icon: FileText,
   name: 'Manage Tabs',
   mode: 'view',
   view: <Main />,

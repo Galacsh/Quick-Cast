@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { BoxModelIcon, TransparencyGridIcon } from '@radix-ui/react-icons'
+import { FileStack, FoldVertical } from 'lucide-react'
 import CreateGroupForm from './create-group-form'
 import EditGroupNameForm from './edit-group-name-form'
 import UngroupForm from './ungroup-form'
@@ -41,7 +41,7 @@ export default function Command() {
       {tabGroups.map((tabGroup) => (
         <List.Item
           key={tabGroup.id}
-          icon={tabGroup.collapsed ? TransparencyGridIcon : BoxModelIcon}
+          icon={tabGroup.collapsed ? FoldVertical : FileStack}
           title={tabGroup.title || 'Untitled'}
           actions={
             <ActionPanel>

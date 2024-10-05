@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from '@radix-ui/react-icons'
+import { ChevronRight } from 'lucide-react'
 import { useNavigation } from '@/cast/contexts'
 import { cn } from '@/lib/utils'
 
@@ -12,7 +12,7 @@ export default function FooterHeader() {
         'text-cmdk-section-title',
         'select-none pointer-events-none'
       )}>
-      <ChevronRightIcon className="size-4" />
+      <ChevronRight className="size-4" />
       {title}
     </div>
   )

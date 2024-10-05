@@ -2,7 +2,7 @@ import { CommandItem } from 'cmdk'
 import { v4 as uuid } from 'uuid'
 import { cn } from '@/lib/utils'
 import { FormMultiSelectItemProps } from '@/cast/types'
-import { CheckCircledIcon, CircleIcon } from '@radix-ui/react-icons'
+import { CircleCheck, Circle } from 'lucide-react'
 import { useCallback, useRef, useState } from 'react'
 
 export default function MultiSelectItem({
@@ -44,9 +44,9 @@ export default function MultiSelectItem({
       <div className="max-w-full flex items-center gap-3 min-w-0">
         <div className="size-[1.125rem] flex items-center justify-center shrink-0">
           {isSelected ? (
-            <CheckCircledIcon className="size-4 text-teal-600 dark:text-teal-400" />
+            <CircleCheck className="size-4 text-teal-600 dark:text-teal-400" />
           ) : (
-            <CircleIcon className="size-4 text-cmdk-section-title" />
+            <Circle className="size-4 text-cmdk-section-title" />
           )}
         </div>
         <span className="text-foreground truncate max-w-full flex-grow">
