@@ -1,6 +1,6 @@
 {
   "name": "Quick Cast",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Chrome extension that allows you to quickly control your tabs, bookmarks and histories.",
   "private": true,
   "type": "module",
