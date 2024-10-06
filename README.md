@@ -33,10 +33,9 @@ Once you open the popup, you can select a command:
 |                |                         | Close a tab group                         | `Ctrl(Cmd) + D`         |
 |                |                         | Edit group name                           | `Ctrl(Cmd) + E`         |
 |                |                         | Ungroup tabs from a group                 | `Ctrl(Cmd) + R`         |
-|                |                         | Create a new tab group                    | `Ctrl(Cmd) + G`         |
+|                | Create Tab Group        | Submit                                    | `Enter`                 |
 | **Bookmark**   | Manage Bookmarks        | Open a bookmark                           | `Enter`                 |
 |                |                         | Open a bookmark in a tab group            | `Ctrl(Cmd) + Enter`     |
-|                |                         | Create a new bookmark                     | `Ctrl(Cmd) + B`         |
 |                |                         | Edit a bookmark                           | `Ctrl(Cmd) + E`         |
 |                |                         | Delete a bookmark                         | `Ctrl(Cmd) + D`         |
 |                |                         | Move to a bookmark folder                 | `Ctrl(Cmd) + M`         |
@@ -44,13 +43,14 @@ Once you open the popup, you can select a command:
 |                |                         | (Reorder) Move bookmark down              | `Ctrl(Cmd) + Shift + ↓` |
 |                |                         | (Reorder) Move bookmark top               | `Ctrl(Cmd) + Shift + ←` |
 |                |                         | (Reorder) Move bookmark bottom            | `Ctrl(Cmd) + Shift + →` |
+|                | Create Bookmark         | Submit                                    | `Enter`                 |
 |                | Manage Bookmark Folders | Open a bookmark folder                    | `Enter`                 |
 |                |                         | Open a bookmark folder in a tab group     | `Ctrl(Cmd) + Enter`     |
 |                |                         | Open a bookmark folder in a new tab group | `Ctrl(Cmd) + G`         |
 |                |                         | Move a folder to another folder           | `Ctrl(Cmd) + M`         |
-|                |                         | Create a new bookmark folder              | `Ctrl(Cmd) + B`         |
 |                |                         | Edit bookmark folder name                 | `Ctrl(Cmd) + E`         |
 |                |                         | Delete a bookmark folder                  | `Ctrl(Cmd) + D`         |
+|                | Create Bookmark Folder  | Submit                                    | `Enter`                 |
 |                | Open Bookmarks Page     | -                                         | -                       |
 | **History**    | Manage Histories        | Open a history                            | `Enter`                 |
 |                |                         | Open a history in a tab group             | `Ctrl(Cmd) + Enter`     |
@@ -75,36 +75,35 @@ Currently, you can customize:
 
 ### Commands & Actions
 
-**Common**
-
-- [ ] Default actions (✅: -)
-
-There are no available actions if the list is empty.
-Which means you can't create a new tab group, bookmark, or folder if there is no item in the list.
-
 **Tab**
 
-- [ ] Select a bookmark folder when toggling bookmark (✅: -)
-- [ ] Move a tab to another window (✅: -)
+- [ ] Select a bookmark folder when toggling bookmark (version: -)
+- [ ] Move a tab to another window (version: -)
 
 **Tab Group**
 
-- [ ] Merge tab groups (✅: -)
-- [ ] Move a tab group to another window (✅: -)
-- [ ] Extract some tabs to a new tab group (✅: -)
+- [ ] Merge tab groups (version: -)
+- [ ] Move a tab group to another window (version: -)
+- [ ] Extract some tabs to a new tab group (version: -)
+- [x] Create Tab Group command (version: 0.0.3)
+
+**Bookmark**
+
+- [x] Create Bookmark command (version: 0.0.3)
+- [x] Create Bookmark Folder command (version: 0.0.3)
 
 ### Options Page
 
 **Commands & Actions**
 
-- [ ] Hide or show commands (✅: -)
-- [ ] Customize action shortcuts (✅: -)
+- [ ] Hide or show commands (version: -)
+- [ ] Customize action shortcuts (version: -)
 
 ### Code refactoring
 
-- [ ] Reduce duplicated code (✅: -)
-- [ ] Better error handling (✅: -)
+- [ ] Reduce duplicated code (version: -)
+- [ ] Better error handling (version: -)
 
 ### Documentation
 
-- [ ] Write a guide for developers (✅: -)
+- [ ] Write a guide for developers (version: -)
