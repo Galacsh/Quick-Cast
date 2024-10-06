@@ -7,7 +7,6 @@ import OpenInGroup from './open-in-group'
 import OpenAsGroup from './open-as-group'
 import EditFolderName from './edit-folder-name'
 import MoveToFolder from './move-to-folder'
-import CreateForm from './create-form'
 import type { BookmarkNode } from '@/types'
 
 export default function Command() {
@@ -145,10 +144,6 @@ function Folder({ folder, folderNames }: FolderProps) {
     await request.deleteFolder({ folder })
   }, [])
 
-  const create = useCallback(() => {
-    push(<CreateForm />)
-  }, [push])
-
   const editFolderName = useCallback(
     (folder: BookmarkNode) => {
       push(<EditFolderName folder={folder} />)
@@ -187,11 +182,6 @@ function Folder({ folder, folderNames }: FolderProps) {
             title="Move to folder"
             onAction={() => moveToFolder(folder)}
             shortcut={{ code: 'KeyM', ctrlMeta: true }}
-          />
-          <Action
-            title="Create"
-            onAction={() => create()}
-            shortcut={{ code: 'KeyB', ctrlMeta: true }}
           />
           <Action
             title="Edit folder name"
