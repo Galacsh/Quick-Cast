@@ -11,7 +11,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 95%;
+    --background: 0 5% 96%;
     --foreground: 0 0% 0%;
     --card: 0 0% 100%;
     --card-foreground: 20 14.3% 4.1%;
@@ -47,9 +47,9 @@
     --cmdk-kbd-accent: 0 0% 39%;
     --cmdk-placeholder: 0 0% 58%;
     --cmdk-section-title: 0 0% 39%;
-    --cmdk-background-accent: 0 0% 86%;
-    --cmdk-background-footer: 0 0% 93%;
-    --cmdk-background-footer-accent: 0 0% 88%;
+    --cmdk-background-accent: 30 3% 86%;
+    --cmdk-background-footer: 40 10% 94%;
+    --cmdk-background-footer-accent: 40 5% 89%;
     --cmdk-background-separator: 0 0% 84%;
     --cmdk-background-kbd: 0 0% 84%;
     --cmdk-background-kbd-accent: 0 0% 79%;
