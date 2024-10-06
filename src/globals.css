@@ -6,7 +6,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
-  src: url(/Inter-Variable.ttf) format('truetype');
+  src: url(/fonts/Inter-Variable.ttf) format('truetype');
 }
 
 @layer base {

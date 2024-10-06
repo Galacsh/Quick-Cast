@@ -52,7 +52,7 @@ const manifest = {
   ],
   web_accessible_resources: [
     {
-      resources: ['assets/*', 'chunks/*', 'icon-*.png'],
+      resources: ['assets/*', 'chunks/*', 'icons/*', 'fonts/*'],
       matches: ['<all_urls>'],
     },
   ],
