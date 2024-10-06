@@ -3,7 +3,7 @@ import { Form, Action, ActionPanel } from '@/cast/api'
 import { tab as request } from '@/extensions/actions'
 import type { Tab, TabGroup } from '@/types'
 
-export default function CreateGroupForm() {
+export default function Command() {
   const [name, setName] = useState('')
   const [selectedTabs, setSelectedTabs] = useState<Tab[]>([])
 
@@ -16,7 +16,7 @@ export default function CreateGroupForm() {
 
   return (
     <Form
-      navigationTitle="Create group"
+      navigationTitle="Create Tab Group"
       actions={
         <ActionPanel>
           <Action

@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 import { FileStack, FoldVertical } from 'lucide-react'
-import CreateGroupForm from './create-group-form'
 import EditGroupNameForm from './edit-group-name-form'
 import UngroupForm from './ungroup-form'
 import { Action, ActionPanel, List } from '@/cast/api'
@@ -64,11 +63,6 @@ export default function Command() {
                 title="Remove tabs"
                 onAction={() => push(<UngroupForm tabGroup={tabGroup} />)}
                 shortcut={{ code: 'KeyR', ctrlMeta: true }}
-              />
-              <Action
-                title="Create group"
-                onAction={() => push(<CreateGroupForm />)}
-                shortcut={{ code: 'KeyG', ctrlMeta: true }}
               />
             </ActionPanel>
           }
