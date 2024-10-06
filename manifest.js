@@ -18,9 +18,9 @@ const manifest = {
     default_popup: 'popup.html',
     default_title: 'Quick Cast',
     default_icon: {
-      16: 'icon-16.png',
-      48: 'icon-48.png',
-      128: 'icon-128.png',
+      16: 'icons/action-16.png',
+      48: 'icons/action-48.png',
+      128: 'icons/action-128.png',
     },
   },
   background: {
@@ -36,9 +36,9 @@ const manifest = {
     },
   },
   icons: {
-    16: 'icon-16.png',
-    48: 'icon-48.png',
-    128: 'icon-128.png',
+    16: 'icons/16.png',
+    48: 'icons/48.png',
+    128: 'icons/128.png',
   },
   options_page: 'options.html',
   permissions: [
