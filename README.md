@@ -1,4 +1,4 @@
-# QuickCast
+# Quick Cast
 
 **Quick Cast** is a Chrome extension that allows you to quickly control your tabs, bookmarks and histories.
 Inspired by [Raycast](https://www.raycast.com/), a productivity tool for macOS, I tried to make a similar tool for
