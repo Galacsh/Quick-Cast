@@ -9,7 +9,7 @@ function openOptionsPage() {
 function notifyVersionUpdate(previousVersion: string, currentVersion: string) {
   chrome.notifications.create({
     type: 'basic',
-    iconUrl: 'icon-48.png',
+    iconUrl: 'icons/48.png',
     title: name,
     message: `Successfully updated version from ${previousVersion} to ${currentVersion}.`,
   })
@@ -18,7 +18,7 @@ function notifyVersionUpdate(previousVersion: string, currentVersion: string) {
 function notifyInstallation(extensionName: string) {
   chrome.notifications.create({
     type: 'basic',
-    iconUrl: 'icon-48.png',
+    iconUrl: 'icons/48.png',
     title: extensionName,
     message: `Successfully installed ${extensionName}.`,
   })
