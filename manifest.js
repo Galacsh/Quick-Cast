@@ -44,7 +44,6 @@ const manifest = {
   permissions: [
     'notifications',
     'storage',
-    'management',
     'tabs',
     'tabGroups',
     'bookmarks',
