@@ -1,7 +1,7 @@
 {
   "name": "Quick Cast",
   "version": "0.0.1",
-  "description": "Fast action and command execution in chrome.",
+  "description": "Chrome extension that allows you to quickly control your tabs, bookmarks and histories.",
   "private": true,
   "type": "module",
   "scripts": {
