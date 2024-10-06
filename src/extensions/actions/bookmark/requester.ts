@@ -21,7 +21,7 @@ export const deleteBookmark = payloadRequester<{ bookmark: BookmarkNode }>(
 export const edit = payloadRequester<{ bookmark: BookmarkNode }>(BOOKMARK.EDIT)
 
 export const openFolder = payloadRequester<{ folder: BookmarkNode }>(
-  BOOKMARK.OPEN
+  BOOKMARK.FOLDER_OPEN
 )
 
 export const openFolderInGroup = payloadRequester<{
