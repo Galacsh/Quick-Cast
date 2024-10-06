@@ -3,7 +3,6 @@ import { Action, ActionPanel, List } from '@/cast/api'
 import { useNavigation } from '@/cast/contexts'
 import { bookmark as request } from '@/extensions/actions'
 import OpenInGroup from './open-in-group'
-import CreateForm from './create-form'
 import EditForm from './edit-form'
 import MoveToFolder from './move-to-folder'
 import type { BookmarkNode } from '@/types'
@@ -109,10 +108,6 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
     [push]
   )
 
-  const create = useCallback(() => {
-    push(<CreateForm />)
-  }, [push])
-
   const edit = useCallback(
     (bookmark: BookmarkNode) => {
       push(<EditForm bookmark={bookmark} />)
@@ -188,11 +183,6 @@ function BookmarkItem({ item, folderName }: BookmarkItemProps) {
             title="Open in group"
             onAction={() => openInGroup(item)}
             shortcut={{ code: 'Enter', ctrlMeta: true }}
-          />
-          <Action
-            title="Create"
-            onAction={() => create()}
-            shortcut={{ code: 'KeyB', ctrlMeta: true }}
           />
           <Action
             title="Edit"
